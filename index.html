@@ -632,6 +632,7 @@ a.chip{display:inline-flex;align-items:center}
 .acard.refc{grid-column:1/-1}
 .linkbox{display:flex;gap:8px;flex-wrap:wrap}
 .linkbox input{flex:1 1 220px;min-width:0;min-height:46px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:0 12px;font:inherit}
+.linkbox .btn svg{width:18px;height:18px;flex:none}
 .linkbox .btn{min-height:46px;border-radius:10px;padding-inline:16px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
 .accsec{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:16px;min-width:0}
 @media(min-width:760px){.accsec{padding:24px}}
@@ -653,6 +654,73 @@ a.chip{display:inline-flex;align-items:center}
 .accpage .empty{margin-top:0}
 .accpage .empty .row2,.empty .row2{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 .accpage .empty .btn{display:inline-flex;align-items:center}
+
+/* ===== My Family Members (referral family list) ===== */
+.fmpage .acchead .avatar svg{width:30px;height:30px}
+.fm-stats{display:grid;gap:12px;grid-template-columns:minmax(0,1fr);margin-bottom:16px}
+@media(min-width:640px){.fm-stats{grid-template-columns:1.3fr 1fr 1fr}}
+.fm-stat{display:flex;flex-direction:column;justify-content:center;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow);min-width:0}
+.fm-stat small{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.fm-stat b{font-family:var(--f-display);font-size:26px;font-weight:800;line-height:1.1;color:var(--ink)}
+.fm-stat b.d{font-size:20px;line-height:1.3}
+.fm-stat.main{flex-direction:row;align-items:center;gap:14px;background:linear-gradient(135deg,var(--brand),color-mix(in srgb,var(--brand) 62%,#000));border-color:transparent}
+.fm-stat.main>div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.fm-stat.main .ai{flex:none;width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,.18);color:var(--brand-ink);display:grid;place-items:center}
+.fm-stat.main .ai svg{width:26px;height:26px}
+.fm-stat.main small{color:var(--brand-ink);opacity:.85}
+.fm-stat.main b{font-size:44px;color:var(--brand-ink)}
+.fm-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:130px}
+.fm-bar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
+.fm-bar h2{font-size:19px;font-weight:800}
+.fm-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;flex:1 1 320px;justify-content:flex-end}
+.fm-search{position:relative;flex:1 1 260px;max-width:380px;min-width:0}
+.fm-search svg{position:absolute;left:12px;top:50%;width:18px;height:18px;margin-top:-9px;color:var(--muted);pointer-events:none}
+.fm-search input{width:100%;min-height:44px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:0 12px 0 38px;font:inherit}
+.fm-search input:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 3px var(--soft)}
+.fm-per{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);font-weight:600;white-space:nowrap}
+.fm-per select{min-height:44px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:0 10px;font:inherit}
+.fm-tw{overflow-x:auto}
+.fm-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.fm-table th{position:sticky;top:0;text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--bg);padding:12px 18px;border-bottom:1px solid var(--line);white-space:nowrap}
+.fm-table td{padding:14px 18px;border-bottom:1px solid var(--line)}
+.fm-table tbody tr:nth-child(even){background:color-mix(in srgb,var(--soft) 45%,transparent)}
+.fm-table tbody tr:hover{background:var(--soft)}
+.fm-table tbody tr:last-child td{border-bottom:0}
+.fm-table .fm-sn{width:84px;font-weight:800;color:var(--brand)}
+.fm-id{font-weight:700;letter-spacing:.02em}
+.fm-st{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:3px 11px;font-size:12.5px;font-weight:700;background:var(--soft);color:var(--brand)}
+.fm-st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.fm-st.warn{background:rgba(255,200,61,.22);color:#8a6200}
+.fm-st.bad{background:rgba(224,57,45,.12);color:var(--sale)}
+.fm-st.off{background:var(--bg);color:var(--muted)}
+:root[data-theme="dark"] .fm-st.warn{color:var(--gold)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .fm-st.warn{color:var(--gold)}}
+.fm-foot{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:14px 18px;border-top:1px solid var(--line)}
+.fm-count{font-size:13.5px;color:var(--muted)}
+.fm-pager{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.fm-pg{min-width:40px;min-height:40px;padding:0 12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;font-weight:700;font-size:14px}
+.fm-pg:hover:not(:disabled){border-color:var(--brand);color:var(--brand)}
+.fm-pg[aria-current="page"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.fm-pg:disabled{opacity:.45;cursor:default}
+.fm-gap{padding:0 4px;color:var(--muted)}
+.fm-none{padding:36px 18px;text-align:center;color:var(--muted);display:flex;flex-direction:column;gap:10px;align-items:center}
+.fm-none b{color:var(--ink);font-size:16px}
+.fmpage .empty{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
+.acard.fmcard{grid-column:1/-1;flex-direction:row;align-items:center;flex-wrap:wrap;gap:14px 18px}
+.acard.fmcard .fmt{flex:1 1 260px;min-width:0;display:flex;flex-direction:column;gap:4px}
+.acard.fmcard .bignum{font-size:40px}
+@media(max-width:639px){
+  .fm-table thead{display:none}
+  .fm-table,.fm-table tbody,.fm-table tr,.fm-table td{display:block;width:100%}
+  .fm-tw{padding:12px}
+  .fm-table tbody tr,.fm-table tbody tr:nth-child(even){border:1px solid var(--line);border-radius:14px;padding:8px 14px;margin-bottom:10px;background:var(--bg)}
+  .fm-table tbody tr:nth-child(even){background:color-mix(in srgb,var(--soft) 55%,var(--bg))}
+  .fm-table td{display:flex;justify-content:space-between;align-items:center;gap:12px;border:0;padding:6px 0;text-align:right}
+  .fm-table td::before{content:attr(data-l);color:var(--muted);font-weight:600;font-size:13px;text-align:left}
+  .fm-table .fm-sn{width:100%}
+  .fm-tools{justify-content:stretch}.fm-search{max-width:none;flex-basis:100%}
+  .fm-foot{justify-content:center}.fm-count{width:100%;text-align:center}
+}
 
 /* Forgot / Reset password */
 .fgt{display:inline-block;align-self:flex-end;margin-top:-6px;font-size:13px;font-weight:700;color:var(--brand);text-decoration:underline;text-underline-offset:3px}
@@ -794,6 +862,64 @@ a.chip{display:inline-flex;align-items:center}
 .lm-info.no .ii{background:var(--sale);color:#fff}
 .lm-info.no b{color:var(--sale)}
 
+/* ===== Send My Location: map picker, confirm step, checkout delivery block ===== */
+.lm-gps .g-i{box-shadow:0 2px 6px rgba(11,122,107,.35)}
+.lm-map{display:flex;gap:12px;align-items:center;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 14px;transition:border-color .15s,background .15s}
+.lm-map:hover{border-color:var(--brand);background:var(--soft)}
+.lm-map .g-i{flex:none;width:34px;height:34px;border-radius:50%;background:var(--soft);color:var(--brand);display:grid;place-items:center}
+.lm-map .g-i svg{width:19px;height:19px}
+.lm-map .g-t{display:flex;flex-direction:column;gap:1px;min-width:0}
+.lm-map b{font-size:14.5px}
+.lm-map small{font-size:12.5px;color:var(--muted)}
+#locBody>.lm-gps+.lm-map{margin-top:-4px}
+
+#locMapBody>*{flex-shrink:0}
+.lmm-top{display:flex;gap:8px;align-items:center}
+.lmm-back{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--ink)}
+.lmm-back:hover{border-color:var(--brand);color:var(--brand)}
+.lmm-back svg{width:18px;height:18px}
+.lmm-top .lm-sbox{flex:1;min-width:0}
+.lmm-list{max-height:210px;margin-top:-6px}
+.lmm-act{display:flex;gap:8px;flex-wrap:wrap}
+.lmm-chip{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--brand);background:var(--soft);color:var(--brand);border-radius:99px;padding:8px 14px;font-weight:700;font-size:13.5px}
+.lmm-chip svg{width:17px;height:17px;flex:none}
+.lmm-chip:disabled{opacity:.7;cursor:progress}
+.lmm-chip.busy svg{animation:locSpin 1s linear infinite}
+.lmm-mapwrap{position:relative;isolation:isolate;height:250px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--bg)}
+#lmmMap{position:absolute;inset:0;font-family:inherit;background:#e8eeec}
+.lmm-pin{position:absolute;left:50%;top:50%;width:32px;height:42px;transform:translate(-50%,-100%);z-index:900;pointer-events:none}
+.lmm-pin svg{display:block;width:100%;height:100%;filter:drop-shadow(0 3px 3px rgba(0,0,0,.35));transition:transform .15s}
+.lmm-pin.lift svg{transform:translateY(-10px)}
+.lmm-dot{position:absolute;left:50%;top:50%;width:8px;height:4px;margin:-2px 0 0 -4px;border-radius:50%;background:rgba(0,0,0,.35);z-index:899;pointer-events:none;transition:transform .15s}
+.lmm-dot.lift{transform:scale(1.5)}
+.lmm-load{position:absolute;inset:0;z-index:1000;display:grid;place-items:center;background:var(--bg);color:var(--muted);font-size:13.5px;font-weight:600}
+.lmm-card{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--surface)}
+.lmm-card .lmm-ci{flex:none;width:34px;height:34px;border-radius:50%;background:var(--brand);color:var(--brand-ink);display:grid;place-items:center}
+.lmm-card .lmm-ci svg{width:18px;height:18px}
+.lmm-card small{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700}
+.lmm-card b{display:block;font-size:15px;line-height:1.3;margin-top:1px;overflow-wrap:anywhere}
+.lmm-card span.s{display:block;font-size:12.5px;color:var(--muted);margin-top:3px;overflow-wrap:anywhere}
+.lmm-hint{font-size:12.5px;color:var(--muted);text-align:center;margin-top:-6px}
+.leaflet-container{font-family:inherit}
+.leaflet-container a{color:#0b6b5e}
+.leaflet-control-attribution{font-size:10px!important}
+
+.locblk{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg);display:flex;flex-direction:column;gap:8px}
+.locblk .lbh{display:flex;gap:8px;align-items:center;font-weight:700;font-size:14px}
+.locblk .lbh svg{width:18px;height:18px;color:var(--brand);flex:none}
+.locblk .lbh em{margin-left:auto;font-style:normal;font-size:11.5px;font-weight:700;color:var(--brand);background:var(--soft);border-radius:99px;padding:2px 9px;white-space:nowrap}
+.locblk p{font-size:13.5px;color:var(--muted);margin:0}
+.locblk p.lbadr{color:var(--ink);font-weight:600;overflow-wrap:anywhere}
+.locblk p.lbwarn{color:var(--sale);font-weight:600}
+.locblk .lbrow{display:flex;gap:8px;flex-wrap:wrap}
+.locblk .btn{padding:8px 12px;font-size:13.5px;display:inline-flex;align-items:center;gap:6px}
+.locblk .btn svg{width:16px;height:16px;flex:none}
+.pinbadge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--brand)}
+.pinbadge svg{width:13px;height:13px}
+.maplk{color:var(--brand);font-weight:600;text-decoration:underline}
+@media(max-width:599px){.lmm-mapwrap{height:210px}.lmm-top .lm-sbox input{font-size:16px}#locMapFoot{flex-wrap:nowrap}#locMapFoot .btn.solid{flex:1 1 0;min-width:0}}
+@media(prefers-reduced-motion:reduce){.lmm-chip.busy svg{animation:none}.lmm-pin svg,.lmm-dot{transition:none}}
+
 @media(max-width:599px){
   .scrim.loc{align-items:flex-end;padding:0}
   .locmodal{width:100%;max-height:92vh;max-height:92dvh;border-radius:18px 18px 0 0;animation:locUp .26s ease-out}
@@ -804,6 +930,61 @@ a.chip{display:inline-flex;align-items:center}
   .lm-clear{margin-left:0}
 }
 @media(prefers-reduced-motion:reduce){.locmodal{animation:none}.lm-gps.busy .g-i svg{animation:none}}
+
+/* Auth buttons on small phones: keep Login, Sign up, Orders and Cart on one row */
+@media(max-width:559px){
+  .actions{gap:4px}
+  .actions .btn{padding:8px 9px;font-size:13px}
+  .actions .cart{padding:8px}
+  .logo{font-size:21px;gap:6px}
+  .logo i{width:28px;height:28px;font-size:17px}
+}
+@media(max-width:419px){.actions{gap:3px}.actions .btn{padding:8px 7px}.actions .cart{padding:8px 7px}.logo{font-size:20px;gap:5px}.logo i{width:26px;height:26px;font-size:16px}}
+@media(max-width:379px){.actions .btn{padding:8px 5px;font-size:12.5px}.actions .cart{padding:8px 5px}.logo{font-size:19px}}
+@media(max-width:339px){.actions .btn{font-size:12px}.logo{font-size:17px}.logo i{display:none}}
+@media(max-width:599px){.modal input{font-size:16px}}
+.modal .btn.solid:disabled{opacity:.65;cursor:progress}
+
+/* ===== PDF Downloads (customer library) ===== */
+.pdfpage{padding-block:16px 56px}
+.pdfnote{margin-bottom:14px}
+.pdfchips{margin-bottom:6px}
+.pdfchips .chip{display:inline-flex;align-items:center;gap:8px}
+.pdfchips .chip i{font-style:normal;font-size:12px;font-weight:700;min-width:22px;text-align:center;padding:1px 6px;border-radius:99px;background:var(--soft);color:var(--brand)}
+.pdfchips .chip[aria-pressed="true"] i{background:rgba(255,255,255,.22);color:var(--brand-ink)}
+.pdfsec{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;min-width:0}
+@media(min-width:760px){.pdfsec{padding:22px}}
+.pdfsh{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.pdfsh .chico{width:44px;height:44px;border-radius:12px}
+.pdfsh h2{font-size:clamp(18px,3.4vw,22px);font-weight:800}
+.pdfsh span.n{margin-left:auto;font-size:13px;color:var(--muted);white-space:nowrap}
+.pdfgrid{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:620px){.pdfgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1000px){.pdfgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.pcard{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px 14px;align-content:start;border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--bg);min-width:0;transition:box-shadow .2s,transform .2s,border-color .2s}
+.pcard:hover{border-color:var(--brand);box-shadow:var(--shadow);transform:translateY(-2px)}
+.pcard.sample{border-style:dashed;background:transparent}
+.pcard.sample:hover{border-color:var(--line);box-shadow:none;transform:none}
+.pthumb{position:relative;width:64px;height:80px;border-radius:8px;display:grid;place-items:center;padding-bottom:16px;background:color-mix(in srgb,hsl(var(--h) 75% 55%) var(--tile-mix),var(--surface));border:1px solid color-mix(in srgb,hsl(var(--h) 60% 50%) 35%,var(--line))}
+.pthumb .ico{width:44%;height:auto;aspect-ratio:1;color:hsl(var(--h) 50% var(--icon-l))}
+.pthumb b{position:absolute;left:6px;bottom:6px;font-size:9px;font-weight:800;letter-spacing:.08em;color:#fff;background:hsl(var(--h) 55% 38%);border-radius:3px;padding:1px 5px}
+.pcard.sample .pthumb{opacity:.6}
+.pinfo2{display:flex;flex-direction:column;gap:4px;min-width:0}
+.pcatn{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--brand)}
+.ptitle{font-family:var(--f-body);font-size:16px;font-weight:700;line-height:1.3;letter-spacing:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.pcard.sample .ptitle{color:var(--muted)}
+.pdesc{font-size:13px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pmeta{font-size:12px;color:var(--muted)}
+.ptag2{align-self:flex-start;font-size:11px;font-weight:700;border-radius:99px;padding:2px 9px;background:var(--soft);color:var(--muted)}
+.pbtns{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}
+.pbtn{flex:1 1 120px;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 14px;border-radius:10px;border:1.5px solid var(--brand);background:none;color:var(--brand);font-weight:700;font-size:14px;white-space:nowrap}
+.pbtn svg{width:18px;height:18px;flex:none}
+.pbtn:hover:not(:disabled){background:var(--soft)}
+.pbtn.solid{background:var(--brand);color:var(--brand-ink)}
+.pbtn.solid:hover:not(:disabled){background:var(--brand);filter:brightness(1.08)}
+.pbtn:disabled{opacity:.45;cursor:not-allowed;border-color:var(--line);color:var(--muted);background:none}
+.pbtn.solid:disabled{background:var(--line);color:var(--muted)}
+.pdfempty{margin-top:14px}
 </style>
 </head>
 <body>
@@ -856,7 +1037,12 @@ a.chip{display:inline-flex;align-items:center}
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 8l9 6 9-6"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.6"/></symbol>
   <symbol id="i-gps" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><circle cx="12" cy="12" r="7.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4L3 6.5V20l6-2.5 6 2.5 6-2.5V4l-6 2.5L9 4zM9 4v13.5M15 6.5V20"/></symbol>
   <symbol id="i-lchev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-baby" viewBox="0 0 48 48"><rect x="15" y="20" width="18" height="22" rx="5"/><path d="M19 20v-4h10v4M24 16V8M21 8h6M15 29h18"/></symbol>
+  <symbol id="i-home" viewBox="0 0 48 48"><path d="M6 23L24 7l18 16"/><path d="M11 20v21h26V20M20 41V29h8v12"/></symbol>
 </svg>
 
 <!-- 1 Top announcement bar -->
@@ -883,7 +1069,7 @@ a.chip{display:inline-flex;align-items:center}
     </form>
     <div class="actions">
       <a class="btn" href="#orders"><span class="hide-s">Track&nbsp;</span>orders</a>
-      <button class="btn hide-s" type="button" data-auth="login">Login</button>
+      <button class="btn" type="button" data-auth="login">Login</button>
       <button class="btn solid" type="button" data-auth="signup">Sign up</button>
       <a class="btn hide-s" id="acctBtn" href="#account" hidden></a>
       <button class="btn hide-s" type="button" id="logoutBtn" hidden>Logout</button>
@@ -1033,13 +1219,14 @@ a.chip{display:inline-flex;align-items:center}
 <main id="categoryView" hidden aria-label="Category"></main>
 <main id="accountView" hidden aria-label="My Account"></main>
 <main id="authPageView" hidden aria-label="Password help"></main>
+<main id="pdfView" hidden aria-label="PDF Downloads"></main>
 
 <!-- 26 Footer / copyright -->
 <footer id="footer">
   <div class="wrap">
     <div class="fcols">
       <div class="about"><a class="logo" href="#top"><i>C</i>Chowk</a><p>An online bazaar for everyday shopping, with cash on delivery and easy returns.</p></div>
-      <div><h4>Customer care</h4><ul><li><a href="#footer">Help center</a></li><li><a href="#footer">How to buy</a></li><li><a href="#orders">Track your order</a></li><li><a href="#seller">Seller dashboard (demo)</a></li><li><a href="#footer">Returns and refunds</a></li></ul></div>
+      <div><h4>Customer care</h4><ul><li><a href="#footer">Help center</a></li><li><a href="#footer">How to buy</a></li><li><a href="#orders">Track your order</a></li><li><a href="#pdf-downloads">PDF Downloads</a></li><li><a href="#seller">Seller dashboard (demo)</a></li><li><a href="#footer">Returns and refunds</a></li></ul></div>
       <div><h4>Chowk</h4><ul><li><a href="#footer">About us</a></li><li><a href="#footer">Careers</a></li><li><a href="#footer">Terms and conditions</a></li><li><a href="#footer">Privacy policy</a></li></ul></div>
       <div><h4>Earn with us</h4><ul><li><a href="#footer">Sell on Chowk</a></li><li><a href="#affiliate">Affiliate program</a></li><li><a href="#mall">Open a brand store</a></li></ul></div>
     </div>
@@ -1070,15 +1257,16 @@ a.chip{display:inline-flex;align-items:center}
 <div class="scrim loc" id="locScrim" hidden>
   <div class="locmodal" role="dialog" aria-modal="true" aria-labelledby="locTitle" tabindex="-1">
     <div class="lm-head">
-      <div><h2 id="locTitle">Set delivery location</h2><p>We use it to show delivery availability, charges and arrival dates.</p></div>
+      <div><h2 id="locTitle">Set delivery location</h2><p id="locSub">We use it to show delivery availability, charges and arrival dates.</p></div>
       <button class="xbtn" type="button" id="locClose" aria-label="Close">&times;</button>
     </div>
-    <div class="lm-body">
-      <button class="lm-gps" type="button" id="locGps"><span class="g-i"><svg class="ico" aria-hidden="true"><use href="#i-gps"/></svg></span><span class="g-t"><b id="locGpsT">Use my current location</b><small>Your browser will ask for permission first</small></span></button>
+    <div class="lm-body" id="locBody">
+      <button class="lm-gps" type="button" id="locGps"><span class="g-i"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg></span><span class="g-t"><b id="locGpsT">Send My Location</b><small>Share where you are. You’ll confirm it on a map first.</small></span></button>
+      <button class="lm-map" type="button" id="locMapBtn"><span class="g-i"><svg class="ico" aria-hidden="true"><use href="#i-map"/></svg></span><span class="g-t"><b>Choose location on map</b><small>Drag the map to place the pin yourself</small></span></button>
       <p class="lm-msg" id="locMsg" role="status" aria-live="polite" hidden></p>
       <div class="lm-or" aria-hidden="true"><span>or</span></div>
       <div class="lm-tabs" role="tablist" aria-label="Choose how to set your location">
-        <button type="button" role="tab" id="locTabSearch" aria-selected="true" aria-controls="locPanelSearch">Search location</button>
+        <button type="button" role="tab" id="locTabSearch" aria-selected="true" aria-controls="locPanelSearch">Search address</button>
         <button type="button" role="tab" id="locTabManual" aria-selected="false" aria-controls="locForm">Enter manually</button>
       </div>
       <div id="locPanelSearch" role="tabpanel" aria-labelledby="locTabSearch">
@@ -1101,10 +1289,34 @@ a.chip{display:inline-flex;align-items:center}
       <div class="lm-info" id="locInfo" role="status" aria-live="polite" hidden></div>
       <p class="lm-note" id="locAcct" hidden>You’re not logged in, so this location is remembered on this device only. <button class="lk" type="button" id="locLogin">Log in</button> to save it to your account.</p>
     </div>
-    <div class="lm-foot">
+    <div class="lm-foot" id="locFoot">
       <button class="btn solid" type="button" id="locSave">Save location</button>
       <button class="btn" type="button" id="locCancel">Cancel</button>
       <button class="lk lm-clear" type="button" id="locClear" hidden>Remove saved location</button>
+    </div>
+    <div class="lm-body" id="locMapBody" hidden>
+      <div class="lmm-top">
+        <button class="lmm-back" type="button" id="lmmBack" aria-label="Back to location options"><svg class="ico" aria-hidden="true"><use href="#i-back"/></svg></button>
+        <div class="lm-sbox"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg><input id="lmmQ" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="lmmList" aria-autocomplete="list" aria-label="Search for an address or area" placeholder="Search address or area"></div>
+      </div>
+      <ul class="lm-list lmm-list" id="lmmList" role="listbox" aria-label="Address suggestions" hidden></ul>
+      <p class="lm-hint" id="lmmSMsg" role="status" aria-live="polite" hidden></p>
+      <div class="lmm-act"><button class="lmm-chip" type="button" id="lmmLocate"><svg class="ico" aria-hidden="true"><use href="#i-gps"/></svg><span id="lmmLocateT">Use my current location</span></button></div>
+      <p class="lm-msg" id="lmmMsg" role="status" aria-live="polite" hidden></p>
+      <div class="lmm-mapwrap" id="lmmMapWrap">
+        <div id="lmmMap" role="application" aria-label="Map. Drag it to move the pin to your delivery spot."></div>
+        <span class="lmm-dot" id="lmmDot" aria-hidden="true"></span>
+        <span class="lmm-pin" id="lmmPin" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.2 0 11.7 0 20 12 32 12 32s12-12 12-20.3C24 5.2 18.6 0 12 0z" fill="#0B7A6B"/><circle cx="12" cy="11.5" r="4.6" fill="#fff"/></svg></span>
+        <div class="lmm-load" id="lmmLoad">Loading map…</div>
+      </div>
+      <p class="lmm-hint" id="lmmMapHint">Drag the map or tap it to place the pin on your delivery spot.</p>
+      <div class="lmm-card" id="lmmCard" aria-live="polite"><span class="lmm-ci"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg></span><div><small id="lmmKind">Selected location</small><b id="lmmAddr">Nothing selected yet</b><span class="s" id="lmmSub"></span></div></div>
+      <label class="lm-l" for="lmmDetail">House / flat no., street and landmark<textarea id="lmmDetail" rows="2" maxlength="200" autocomplete="street-address" placeholder="e.g. House 14, Street 7, near the green mosque" aria-describedby="lmmDetailE"></textarea><small class="ferr" id="lmmDetailE"></small></label>
+      <div class="lm-info" id="lmmInfo" role="status" aria-live="polite" hidden></div>
+    </div>
+    <div class="lm-foot" id="locMapFoot" hidden>
+      <button class="btn solid" type="button" id="lmmConfirm" disabled>Confirm location</button>
+      <button class="btn" type="button" id="lmmCancel">Back</button>
     </div>
   </div>
 </div>
@@ -1462,7 +1674,7 @@ window.CHOWK_API_BASE='';
       '<div class="sr'+(T.ship?'':' cut')+'"><dt>Delivery</dt><dd>'+(T.ship?'Rs. '+fmt(T.ship):'Free')+'</dd></div>'+
       '<div class="sr tot"><dt>Grand total</dt><dd>Rs. '+fmt(T.total)+'</dd></div></dl>'+
       (saving>0?'<div class="saving">'+ic('check')+'You save Rs. '+fmt(saving)+' on this order</div>':'')+
-      phoneBlock+
+      locBlock()+phoneBlock+
       '<button class="checkout" type="button" data-checkout>'+ic('lock')+'Proceed to checkout</button>'+
       '<button class="back" type="button" data-go-home>'+ic('back')+'Continue shopping</button>'+
       '<div class="assure"><div class="est">'+ic('truck')+'<span><b>Estimated delivery</b><br>'+dEst()+locTag()+'</span></div>'+
@@ -1499,13 +1711,13 @@ window.CHOWK_API_BASE='';
   }
   function showCart(){
     $('#drawerScrim').hidden=true;$('#authScrim').hidden=true;
-    $('#home').hidden=true;$('#ordersView').hidden=true;$('#adminView').hidden=true;$('#categoryView').hidden=true;$('#accountView').hidden=true;$('#productView').hidden=true;$('#authPageView').hidden=true;$('#cartView').hidden=false;document.title='My Cart | Chowk';
+    $('#home').hidden=true;$('#ordersView').hidden=true;$('#adminView').hidden=true;$('#categoryView').hidden=true;$('#accountView').hidden=true;$('#productView').hidden=true;$('#authPageView').hidden=true;$('#pdfView').hidden=true;$('#cartView').hidden=false;document.title='My Cart | Chowk';
     try{renderCart()}catch(x){$('#cartView').innerHTML='<div class="wrap cartpage"><div class="empty"><h2>Could not load your cart</h2><button class="btn solid" type="button" data-go-home>Back to shop</button></div></div>'}
     toTop();
   }
   function showHome(){
-    if($('#cartView').hidden&&$('#productView').hidden&&$('#ordersView').hidden&&$('#adminView').hidden&&$('#categoryView').hidden&&$('#accountView').hidden&&$('#authPageView').hidden)return;
-    $('#ordersView').hidden=true;$('#adminView').hidden=true;$('#categoryView').hidden=true;$('#accountView').hidden=true;$('#cartView').hidden=true;$('#productView').hidden=true;$('#authPageView').hidden=true;$('#home').hidden=false;document.title='Chowk Marketplace';
+    if($('#cartView').hidden&&$('#productView').hidden&&$('#ordersView').hidden&&$('#adminView').hidden&&$('#categoryView').hidden&&$('#accountView').hidden&&$('#authPageView').hidden&&$('#pdfView').hidden)return;
+    $('#ordersView').hidden=true;$('#adminView').hidden=true;$('#categoryView').hidden=true;$('#accountView').hidden=true;$('#cartView').hidden=true;$('#productView').hidden=true;$('#authPageView').hidden=true;$('#pdfView').hidden=true;$('#home').hidden=false;document.title='Chowk Marketplace';
   }
   function after(){
     var a=document.activeElement,sel=null;
@@ -1789,7 +2001,7 @@ window.CHOWK_API_BASE='';
   function showProduct(slug){
     var p=bySlug(slug);
     if(p&&pd&&pd.p===p&&!$('#productView').hidden)return;
-    $('#home').hidden=true;$('#ordersView').hidden=true;$('#adminView').hidden=true;$('#categoryView').hidden=true;$('#accountView').hidden=true;$('#cartView').hidden=true;$('#drawerScrim').hidden=true;$('#authScrim').hidden=true;$('#authPageView').hidden=true;$('#productView').hidden=false;
+    $('#home').hidden=true;$('#ordersView').hidden=true;$('#adminView').hidden=true;$('#categoryView').hidden=true;$('#accountView').hidden=true;$('#cartView').hidden=true;$('#drawerScrim').hidden=true;$('#authScrim').hidden=true;$('#authPageView').hidden=true;$('#pdfView').hidden=true;$('#productView').hidden=false;
     if(!p){pd=null;renderNotFound(slug);document.title='Product not found | Chowk';toTop();return}
     var pcf=vcfg(p);pd={p:p,slug:slug,s:'',c:pdColor(p,pcf),q:1,slide:0,err:''};
     renderPdp();document.title=p.n.split(',')[0]+' | Chowk';toTop();
@@ -1800,6 +2012,7 @@ window.CHOWK_API_BASE='';
   }
   function route(){
     var h=location.hash||'';
+    if(h==='#pdf-downloads'){showPdfs();return}
     if(h==='#forgot-password'){showAuthPage('forgot');return}
     if(h.indexOf('#reset-password')===0){showAuthPage('reset',h.slice(16));return}
     if(h==='#orders'||h.indexOf('#order-')===0){showTrack(h);return}
@@ -1807,7 +2020,7 @@ window.CHOWK_API_BASE='';
     if(h==='#account'||h.indexOf('#account/')===0){showAccount(h.slice(9));return}
     if(h.indexOf('#category-')===0){showCategory(h.slice(10));return}
     if(h.indexOf('#product-')===0)showProduct(h.slice(9));
-    else if(!$('#productView').hidden||!$('#ordersView').hidden||!$('#adminView').hidden||!$('#categoryView').hidden||!$('#accountView').hidden||!$('#authPageView').hidden)showHome();
+    else if(!$('#productView').hidden||!$('#ordersView').hidden||!$('#adminView').hidden||!$('#categoryView').hidden||!$('#accountView').hidden||!$('#authPageView').hidden||!$('#pdfView').hidden)showHome();
   }
   function backToShop(){
     showHome();
@@ -1893,6 +2106,8 @@ window.CHOWK_API_BASE='';
     var fem=$('#femail');
     if(fem) fem.placeholder=m==='login'?'03xx xxxxxxx or email':'ayesha@example.com';
     $('#authSubmit').textContent=m==='login'?'Login':'Create account';
+    if(fem){fem.setAttribute('autocomplete',m==='login'?'username':'email');fem.setAttribute('inputmode',m==='login'?'text':'email');fem.setAttribute('autocapitalize','off');fem.setAttribute('spellcheck','false')}
+    $('#fpass').setAttribute('autocomplete',m==='login'?'current-password':'new-password');
     authExtras();
   }
   document.querySelectorAll('[data-auth]').forEach(function(b){b.addEventListener('click',function(){setMode(b.dataset.auth);$('#authScrim').hidden=false})});
@@ -1975,7 +2190,7 @@ window.CHOWK_API_BASE='';
     var ld=lastDone(o),msg=ld?ld[2]:'We have not received this order yet.';
     return'<div class="wrap trk"><div class="thead"><div><a class="back" href="#orders">&larr; All orders</a><h1>Track order '+esc(o.id)+'</h1><p class="muted">Tracking ID '+esc(o.trk)+'</p></div>'+chip(o)+'</div>'+DEMONOTE+
     '<div class="odet"><div class="stack"><section class="card2" aria-labelledby="o1"><h2 id="o1">Order details</h2>'+o.items.map(function(i){return'<div class="item">'+thumb(i)+'<div><b>'+esc(i.n)+'</b><div class="muted">'+(i.o?esc(i.o)+' · ':'')+'Quantity '+(+i.q||1)+'</div></div></div>'}).join('')+
-    '<dl class="kv" style="margin-top:8px"><dt>Order date</dt><dd>'+fdt(o.placed)+'</dd><dt>Delivery type</dt><dd>'+esc(TYPES[o.type])+'</dd><dt>Deliver to</dt><dd>'+(esc(o.cust)||'Not available')+'<br>'+(esc(o.addr)||'Address not available')+(o.city?', '+esc(o.city):'')+'</dd><dt>Contact phone</dt><dd>'+(esc(o.phone)||'Not available')+'</dd><dt>Estimated delivery</dt><dd>'+(o.done.delivered?'Delivered':fd(o.eta))+'</dd></dl></section>'+
+    '<dl class="kv" style="margin-top:8px"><dt>Order date</dt><dd>'+fdt(o.placed)+'</dd><dt>Delivery type</dt><dd>'+esc(TYPES[o.type])+'</dd><dt>Deliver to</dt><dd>'+(esc(o.cust)||'Not available')+'<br>'+(esc(o.addr)||'Address not available')+(o.city?', '+esc(o.city):'')+(o.geo?'<br>'+locMapLink(o.geo):'')+'</dd><dt>Contact phone</dt><dd>'+(esc(o.phone)||'Not available')+'</dd><dt>Estimated delivery</dt><dd>'+(o.done.delivered?'Delivered':fd(o.eta))+'</dd></dl></section>'+
     '<section class="card2" aria-labelledby="o2"><h2 id="o2">Courier details</h2>'+courierBox(o)+'</section>'+
     '<section class="card2" aria-labelledby="o3"><h2 id="o3">Delayed or a problem?</h2><form class="of" data-support="'+esc(o.id)+'"><label>Tell us what went wrong<textarea id="supTxt" maxlength="300" placeholder="For example: my package is late or I missed the delivery"></textarea></label><p class="ferr" role="alert"></p><button class="btn solid" type="submit">Contact support</button><p class="muted" style="font-size:13px">Demo only: your message is saved to this order\'s history in this browser and is not sent to anyone.</p></form></section></div>'+
     '<div class="stack"><section class="card2" aria-labelledby="o4"><h2 id="o4">Delivery journey</h2>'+banners(o)+progress(o)+'<p class="muted" style="margin-top:6px"><b>'+pct(o)+'%</b> complete</p><div class="msg" role="status">'+CK.replace('class="ico"','class="ico" style="width:20px;height:20px;flex:none;color:var(--brand)"')+'<span>'+esc(msg)+'</span></div>'+timeline(o,false)+'</section>'+
@@ -1984,7 +2199,7 @@ window.CHOWK_API_BASE='';
   function goTo(h){if(location.hash===h){route();return}try{location.hash=h}catch(x){}if(location.hash!==h)route()}
   document.addEventListener('click',function(e){var a=e.target.closest('a[href="#orders"],a[href="#seller"],a[href^="#order-"]');if(!a||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey)return;e.preventDefault();goTo(a.getAttribute('href'))});
   function errView(v,h){v.innerHTML='<div class="wrap trk"><div class="nf" role="alert"><h1>Could not load your orders</h1><p>Something went wrong while reading order data in this browser. Your saved orders have not been changed.</p><button class="btn solid" type="button" data-retry="'+esc(h)+'">Try again</button> <button class="btn" type="button" data-resetfix>Reset demo data</button></div></div>'}
-  function hideAll(){['#home','#cartView','#productView','#ordersView','#adminView','#categoryView','#accountView','#authPageView','#drawerScrim','#authScrim'].forEach(function(s){$(s).hidden=true})}
+  function hideAll(){['#home','#cartView','#productView','#ordersView','#adminView','#categoryView','#accountView','#authPageView','#pdfView','#drawerScrim','#authScrim'].forEach(function(s){$(s).hidden=true})}
   function showTrack(h){
     hideAll();var v=$('#ordersView');v.hidden=false;toTop();loadOrders();
     try{showTrack2(h,v)}catch(x){errView(v,h)}}
@@ -2031,7 +2246,7 @@ window.CHOWK_API_BASE='';
     if(!o){el.innerHTML='<div class="empty"><span class="eico">'+ic('cart')+'</span><h2>Select an order</h2><p>Pick an order from the list to update its delivery status.</p></div>';return}
     var c=curStep(o),ld=lastDone(o),canFail=o.done.ofd&&!o.done.delivered,fin=!!o.done.delivered;
     el.innerHTML='<div class="stack"><section class="card2"><div class="thead"><div><h2 style="margin:0">'+esc(o.id)+'</h2><p class="muted">'+esc(o.trk)+' · '+esc(o.cust)+(o.phone?' · Phone: <b>'+esc(o.phone)+'</b>':'')+', '+esc(o.city)+'</p></div>'+chip(o)+'</div>'+progress(o)+'<p class="muted" style="margin-top:6px"><b>'+pct(o)+'%</b> complete'+(c?' · Next: '+c[1]:' · All steps done')+'</p>'+timeline(o,true)+'</section>'+
-    '<section class="card2"><h2>Customer and delivery details</h2><dl class="kv"><dt>Customer</dt><dd>'+esc(o.cust)+'</dd><dt>Phone number</dt><dd><b>'+esc(o.phone||'Not provided')+'</b></dd><dt>Delivery address</dt><dd>'+(esc(o.addr)||'Not available')+(o.city?', '+esc(o.city):'')+'</dd><dt>Order date</dt><dd>'+fdt(o.placed)+'</dd></dl></section>'+
+    '<section class="card2"><h2>Customer and delivery details</h2><dl class="kv"><dt>Customer</dt><dd>'+esc(o.cust)+'</dd><dt>Phone number</dt><dd><b>'+esc(o.phone||'Not provided')+'</b></dd><dt>Delivery address</dt><dd>'+(esc(o.addr)||'Not available')+(o.city?', '+esc(o.city):'')+(o.geo?'<br>'+locMapLink(o.geo):'')+'</dd><dt>Order date</dt><dd>'+fdt(o.placed)+'</dd></dl></section>'+
     '<section class="card2"><h2>Courier and delivery details</h2><form class="of" data-form="info" novalidate><div class="split"><label>Courier company<input name="courier" list="cl" maxlength="40" value="'+esc(o.courier)+'"><datalist id="cl"><option value="TCS"><option value="Leopards Courier"><option value="M&amp;P"><option value="PostEx"><option value="BlueEx"><option value="Trax"></datalist></label><label>Tracking number<input name="trk" maxlength="24" value="'+esc(o.trackingNo)+'" placeholder="Letters, numbers, dashes"></label></div><label>Estimated delivery date<input type="date" name="eta" value="'+esc(o.eta)+'"'+(fin?' disabled':'')+'></label><label>Notes (optional)<textarea name="notes" maxlength="300">'+esc(o.notes)+'</textarea></label><p class="ferr" role="alert"></p><button class="btn solid" type="submit">Save details</button></form></section>'+
     '<section class="card2"><h2>Delays and failed attempts</h2><div class="split"><form class="of" data-form="delay" novalidate><label>Reason for delay<input name="note" maxlength="120"'+(fin?' disabled':'')+'></label><label>New estimated date<input type="date" name="eta"'+(fin?' disabled':'')+'></label><p class="ferr" role="alert"></p><button class="btn" type="submit"'+(fin?' disabled':'')+'>Record delay</button></form><form class="of" data-form="fail" novalidate><label>What happened<input name="note" maxlength="120"'+(canFail?'':' disabled')+'></label><p class="ferr" role="alert"></p><button class="btn" type="submit"'+(canFail?'':' disabled')+'>Record failed attempt</button>'+(canFail?'':'<p class="muted" style="font-size:13px">Available once the order is out for delivery.</p>')+'</form></div></section>'+
     '<section class="card2"><h2>Status history</h2>'+histHtml(o)+'</section></div>'}
@@ -2083,7 +2298,7 @@ window.CHOWK_API_BASE='';
     var custName=u?u.name:DEMO.name;
     var phone=orderPhone||(u&&u.phone)||checkoutPhoneVal||DEMO.phone;
     var n=orders.reduce(function(m,o){var k=+String(o.id).replace(/\D/g,'');return k>m?k:m},1000)+1,now=Date.now();
-    var o={id:'CHK-'+n,trk:'TRK-'+Math.floor(Math.random()*16777215).toString(16).toUpperCase().padStart(6,'0'),cust:custName,phone:phone,addr:locOrderAddr(),city:locOrderCity(),items:cart.map(function(i){return{n:i.n,s:i.s,c:i.c,o:i.o,q:i.q,id:i.id,pr:i.pr}}),type:'standard',placed:now,eta:ymd(now+etaDays()[1]*DAY),courier:'',trackingNo:'',notes:'',done:{placed:now},delays:[],failed:[],hist:[]};
+    var o={id:'CHK-'+n,trk:'TRK-'+Math.floor(Math.random()*16777215).toString(16).toUpperCase().padStart(6,'0'),cust:custName,phone:phone,addr:locOrderAddr(),city:locOrderCity(),geo:locOrderGeo(),items:cart.map(function(i){return{n:i.n,s:i.s,c:i.c,o:i.o,q:i.q,id:i.id,pr:i.pr}}),type:'standard',placed:now,eta:ymd(now+etaDays()[1]*DAY),courier:'',trackingNo:'',notes:'',done:{placed:now},delays:[],failed:[],hist:[]};
     addHist(o,'step','Completed: Order placed',now);orders.unshift(o);saveOrders();
     cart=[];coupon=null;couponMsg=null;seeded=false;persist();badge();checkoutPhoneVal='';checkoutPhoneErr='';toast('Demo order '+o.id+' placed.');goTo('#order-'+o.id)}
   window.addEventListener('storage',function(e){if(e.key!==OKEY)return;loadOrders();if(!$('#ordersView').hidden)route();else if(!$('#adminView').hidden){admList();admPanel()}});
@@ -2218,15 +2433,55 @@ window.CHOWK_API_BASE='';
     if(/^\+?\d{10,14}$/.test(d)){d=d.replace('+','');if(d.indexOf('92')===0&&d.length===12)d='0'+d.slice(2);return d}
     return'';
   }
+  /* Pure-JS SHA-256 so the hash is identical on https, http and file pages (crypto.subtle only exists on secure pages) */
+  function sha256js(str){
+    var ascii=unescape(encodeURIComponent(str));
+    function rr(v,a){return(v>>>a)|(v<<(32-a))}
+    var mp=Math.pow,mw=mp(2,32),i,j,res='',words=[],bl=ascii.length*8,hash=[],k=[],pc=0,ic={};
+    for(var c=2;pc<64;c++){if(!ic[c]){for(i=0;i<313;i+=c)ic[i]=c;hash[pc]=(mp(c,.5)*mw)|0;k[pc++]=(mp(c,1/3)*mw)|0}}
+    ascii+='\x80';while(ascii.length%64-56)ascii+='\x00';
+    for(i=0;i<ascii.length;i++){j=ascii.charCodeAt(i);words[i>>2]|=j<<((3-i)%4)*8}
+    words[words.length]=((bl/mw)|0);words[words.length]=bl;
+    for(j=0;j<words.length;){
+      var w=words.slice(j,j+=16),oldHash=hash;hash=hash.slice(0,8);
+      for(i=0;i<64;i++){
+        var w15=w[i-15],w2=w[i-2],a=hash[0],e=hash[4];
+        var t1=hash[7]+(rr(e,6)^rr(e,11)^rr(e,25))+((e&hash[5])^((~e)&hash[6]))+k[i]+(w[i]=(i<16)?w[i]:(w[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+w[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);
+        var t2=(rr(a,2)^rr(a,13)^rr(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));
+        hash=[(t1+t2)|0].concat(hash);hash[4]=(hash[4]+t1)|0;
+      }
+      for(i=0;i<8;i++)hash[i]=(hash[i]+oldHash[i])|0;
+    }
+    for(i=0;i<8;i++)for(j=3;j+1;j--){var bt=(hash[i]>>(j*8))&255;res+=((bt<16)?0:'')+bt.toString(16)}
+    return res;
+  }
   function hashPw(p){
     var enc=null;
     try{enc=new TextEncoder().encode('chowk:'+p)}catch(x){}
     if(enc&&window.crypto&&crypto.subtle&&crypto.subtle.digest){
-      return crypto.subtle.digest('SHA-256',enc).then(function(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return('0'+x.toString(16)).slice(-2)}).join('')},function(){return weak(p)});
+      return crypto.subtle.digest('SHA-256',enc).then(function(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return('0'+x.toString(16)).slice(-2)}).join('')},function(){return sha256js('chowk:'+p)});
     }
-    return Promise.resolve(weak(p));
+    return Promise.resolve(sha256js('chowk:'+p));
   }
+  /* kept only to recognise accounts created by older versions on non-secure pages */
   function weak(p){var h=5381;for(var i=0;i<p.length;i++)h=((h<<5)+h+p.charCodeAt(i))|0;return'w'+(h>>>0).toString(16)}
+  function newSalt(){
+    var a=new Uint8Array(16);
+    try{crypto.getRandomValues(a)}catch(x){for(var i=0;i<16;i++)a[i]=Math.floor(Math.random()*256)}
+    return Array.prototype.map.call(a,function(x){return('0'+x.toString(16)).slice(-2)}).join('');
+  }
+  function hashSalted(pw,salt){return hashPw(salt+':'+pw)}
+  /* true if pw is this user's password (new salted scheme, or an older unsalted hash) */
+  function verifyPw(u,pw){
+    if(u.salt)return hashSalted(pw,u.salt).then(function(h){return h===u.pass});
+    return hashPw(pw).then(function(h){return h===u.pass||(String(u.pass).charAt(0)==='w'&&weak(pw)===u.pass)});
+  }
+  /* an account still on the older unsalted hash is moved to a salted one the first time it logs in */
+  function upgradePw(u,pw){
+    if(u.salt)return Promise.resolve();
+    var salt=newSalt();
+    return hashSalted(pw,salt).then(function(h){loadUsers();var cu=userBy(u.id);if(cu){cu.salt=salt;cu.pass=h;saveUsers()}});
+  }
   function fdate(t){return new Date(t).toLocaleDateString('en-PK',{day:'numeric',month:'short',year:'numeric'})}
   function first(n){return String(n||'').split(' ')[0]}
   function openAuth(m){setMode(m);$('#authScrim').hidden=false}
@@ -2247,41 +2502,61 @@ window.CHOWK_API_BASE='';
     try{localStorage.setItem(SKEY,u.id)}catch(x){}
     syncAuthUi();toast(msg);goTo('#account');
   }
+  var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function authBusy(on){var b=$('#authSubmit');b.disabled=on;b.setAttribute('aria-busy',on?'true':'false')}
   function handleAuth(){
-    var err=$('#authErr');err.textContent='';
+    var err=$('#authErr');
+    if($('#authSubmit').disabled)return;
+    err.textContent='';
     var name=$('#fname').value.trim().replace(/\s+/g,' '),rawEmail=$('#femail').value.trim(),pw=$('#fpass').value;
     var rawPhone=($('#fphone')?$('#fphone').value:'').trim();
+    var fail=function(m,f){err.textContent=m;authBusy(false);var el=f&&$(f);if(el)el.focus()};
+    var oops=function(){fail('Something went wrong. Please try again.')};
 
     if(mode==='login'){
+      if(!rawEmail){fail('Enter your email address or mobile number.','#femail');return}
       var lg=normLogin(rawEmail);
-      if(!lg){err.textContent='Enter a valid email address or mobile number.';return}
-      if(pw.length<8){err.textContent='Password must be at least 8 characters.';return}
-      hashPw(pw).then(function(hp){
-        loadUsers();var ex=userByLogin(lg);
-        if(!ex||ex.pass!==hp){err.textContent='Incorrect email/mobile or password.';return}
-        doneAuth(ex,'Welcome back, '+first(ex.name)+'.');return;
-      });
+      if(!lg){fail('Enter a valid email address or mobile number.','#femail');return}
+      if(!pw){fail('Enter your password.','#fpass');return}
+      if(pw.length<8){fail('Password must be at least 8 characters.','#fpass');return}
+      authBusy(true);
+      loadUsers();var ex=userByLogin(lg);
+      var chk=ex?verifyPw(ex,pw):hashPw(pw).then(function(){return false});
+      chk.then(function(ok){
+        if(!ok){fail('Incorrect email/mobile or password.','#fpass');return}
+        return upgradePw(ex,pw).then(function(){
+          loadUsers();var cu=userBy(ex.id)||ex;authBusy(false);
+          doneAuth(cu,'Welcome back, '+first(cu.name)+'.');
+        });
+      }).catch(oops);
       return;
     }
 
-    if(name.length<2){err.textContent='Enter your full name.';$('#fname').focus();return}
-    if(!rawPhone){err.textContent='Please enter your phone number.';$('#fphone').focus();return}
-    if(!isValidPhone(rawPhone)){err.textContent='Please enter a valid phone number (e.g., +92 300 1234567 or 0300 1234567).';$('#fphone').focus();return}
-    var lg=normLogin(rawEmail);
-    if(!lg){err.textContent='Enter a valid email address.';$('#femail').focus();return}
-    if(pw.length<8){err.textContent='Password must be at least 8 characters.';$('#fpass').focus();return}
+    if(name.length<2){fail('Enter your full name.','#fname');return}
+    if(!rawPhone){fail('Please enter your phone number.','#fphone');return}
+    if(!isValidPhone(rawPhone)){fail('Please enter a valid phone number (e.g., +92 300 1234567 or 0300 1234567).','#fphone');return}
+    var em=rawEmail.toLowerCase();
+    if(!em){fail('Please enter your email address.','#femail');return}
+    if(!EMAIL_RE.test(em)){fail('Enter a valid email address, for example name@example.com.','#femail');return}
+    if(!pw){fail('Create a password.','#fpass');return}
+    if(pw.length<8){fail('Password must be at least 8 characters.','#fpass');return}
+    if(pw.length>128){fail('Password must be 128 characters or fewer.','#fpass');return}
 
     var phone=formatPhone(rawPhone);
-    hashPw(pw).then(function(hp){
+    loadUsers();
+    if(userByLogin(em)){fail('An account with this email already exists. Please log in.','#femail');return}
+    if(userByPhone(phone)){fail('An account with this phone number already exists. Please log in.','#fphone');return}
+    authBusy(true);
+    var salt=newSalt();
+    hashSalted(pw,salt).then(function(hp){
       loadUsers();
-      var exL=userByLogin(lg);
-      var exP=userByPhone(phone);
-      if(exL||exP){err.textContent='An account with this '+(exP?'phone number':'email')+' already exists. Please log in.';return}
-      var ref=userByCode(pendingRef()),u={id:nextCid(),name:name,login:lg,email:lg,phone:phone,pass:hp,code:genCode(),referredBy:(ref&&ref.login!==lg)?ref.id:null,created:Date.now()};
+      if(userByLogin(em)||userByPhone(phone)){fail('An account with this email or phone number already exists. Please log in.');return}
+      var ref=userByCode(pendingRef()),u={id:nextCid(),name:name,login:em,email:em,phone:phone,pass:hp,salt:salt,code:genCode(),referredBy:(ref&&ref.login!==em)?ref.id:null,created:Date.now()};
       users.push(u);saveUsers();
       try{localStorage.removeItem(PKEY)}catch(x){}
+      authBusy(false);
       doneAuth(u,'Account created. Your Client ID is '+u.id+'.'+(u.referredBy?' You joined '+first(ref.name)+'’s family.':''));
-    });
+    }).catch(oops);
   }
   function logout(){
     try{localStorage.removeItem(SKEY)}catch(x){}
@@ -2305,6 +2580,85 @@ window.CHOWK_API_BASE='';
   function refBox(u,withWa){
     return'<div class="linkbox"><input type="text" readonly id="refInput" value="'+esc(refLink(u))+'" aria-label="Your referral link"><button class="btn solid" type="button" data-copy-ref>'+ic('link')+'Copy Link</button><button class="btn" type="button" data-share-ref>'+ic('share')+'Share Link</button>'+(withWa?'<a class="btn" href="'+esc(waHref(u))+'" target="_blank" rel="noopener">WhatsApp</a>':'')+'</div>';
   }
+
+  /* ---- My Family Members: accounts registered through the logged-in user's referral link ----
+     DATA SOURCE: the accounts store (users[]). Each account has a unique id, a created timestamp and
+     referredBy (the referrer's id, set at sign-up from the ?ref= code). famCollect() returns ONLY the
+     accounts that trace back to the logged-in user, so other users' referrals never appear.
+     FUTURE LEVELS: set FAM_LEVELS to 2, 3... and famCollect() also returns the members those people
+     referred (each row carries level and via). The table only shows direct members while FAM_LEVELS is 1.
+     SERVER: replace famCollect() with a call to your API (e.g. GET /api/me/family) that returns
+     [{id, created, status, level}] and enforces on the server that users only read their own family. */
+  var FAM_LEVELS=1;
+  var fam={q:'',page:1,per:10,last:'',owner:''};
+  var FAM_ST={active:['Active','ok'],pending:['Pending','warn'],inactive:['Inactive','off'],suspended:['Suspended','bad'],blocked:['Blocked','bad']};
+  function famStatus(x){
+    var k=String(x.status||'active').toLowerCase();
+    return FAM_ST[k]||[String(x.status).charAt(0).toUpperCase()+String(x.status).slice(1),'off'];
+  }
+  function famCollect(u){
+    var out=[],seen={},front=[u.id],lvl;seen[u.id]=1;
+    for(lvl=1;lvl<=FAM_LEVELS&&front.length;lvl++){
+      var next=[];
+      users.forEach(function(x){
+        if(x.referredBy&&front.indexOf(x.referredBy)>-1&&!seen[x.id]){
+          seen[x.id]=1;next.push(x.id);
+          out.push({id:x.id,created:x.created,status:famStatus(x),level:lvl,via:x.referredBy});
+        }
+      });
+      front=next;
+    }
+    out.sort(function(a,b){return a.created-b.created});
+    return out;
+  }
+  function famKey(v){return String(v==null?'':v).toUpperCase().replace(/[\s\-_]+/g,'')}
+  function famNums(cur,total){
+    var a=[],i;
+    for(i=1;i<=total;i++){if(i===1||i===total||Math.abs(i-cur)<=1||(cur<=3&&i<=4)||(cur>=total-2&&i>=total-3))a.push(i);else if(a[a.length-1]!=='…')a.push('…')}
+    return a;
+  }
+  function famResultsHtml(rows){
+    var q=fam.q.trim(),k=famKey(q),list=k?rows.filter(function(r){return famKey(r.id).indexOf(k)>-1}):rows,
+        total=list.length,per=fam.per,pages=Math.max(1,Math.ceil(total/per));
+    if(fam.page>pages)fam.page=pages;if(fam.page<1)fam.page=1;
+    if(!total)return'<div class="fm-none" role="status"><span class="ai" style="width:46px;height:46px;border-radius:14px;background:var(--soft);color:var(--brand);display:grid;place-items:center">'+ic('search').replace('class="ico"','class="ico" style="width:22px;height:22px"')+'</span><b>No family member found</b><span>Nothing matches the Member ID “'+esc(q)+'”. Check the ID and try again.</span><button class="btn" type="button" data-fm-clear>Clear search</button></div>';
+    var start=(fam.page-1)*per,end=Math.min(start+per,total),slice=list.slice(start,end);
+    var h='<div class="fm-tw"><table class="fm-table"><caption class="sr">Family members registered through your referral link</caption><thead><tr><th scope="col">S.No.</th><th scope="col">Member ID</th><th scope="col">Registration Date</th><th scope="col">Status</th></tr></thead><tbody>'+
+      slice.map(function(r,i){
+        var d=new Date(r.created);
+        return'<tr><td class="fm-sn" data-l="S.No.">'+(start+i+1)+'</td><td data-l="Member ID"><span class="fm-id">'+esc(r.id)+'</span></td><td data-l="Registration Date"><time datetime="'+(isNaN(d)?'':d.toISOString())+'" title="'+esc(fdt(r.created))+'">'+fdate(r.created)+'</time></td><td data-l="Status"><span class="fm-st '+r.status[1]+'">'+esc(r.status[0])+'</span></td></tr>';
+      }).join('')+'</tbody></table></div>';
+    h+='<div class="fm-foot"><p class="fm-count" role="status" aria-live="polite">Showing '+(start+1)+'–'+end+' of '+total+(total===1?' member':' members')+(k?' (filtered from '+rows.length+')':'')+'</p>';
+    if(pages>1){
+      h+='<nav class="fm-pager" aria-label="Family members pages"><button class="fm-pg" type="button" data-fm-page="'+(fam.page-1)+'"'+(fam.page<=1?' disabled':'')+' aria-label="Previous page">&lsaquo; Prev</button>'+
+        famNums(fam.page,pages).map(function(n){return n==='…'?'<span class="fm-gap" aria-hidden="true">…</span>':'<button class="fm-pg" type="button" data-fm-page="'+n+'" aria-label="Page '+n+'"'+(n===fam.page?' aria-current="page"':'')+'>'+n+'</button>'}).join('')+
+        '<button class="fm-pg" type="button" data-fm-page="'+(fam.page+1)+'"'+(fam.page>=pages?' disabled':'')+' aria-label="Next page">Next &rsaquo;</button></nav>';
+    }
+    return h+'</div>';
+  }
+  function famRefresh(focusPage){
+    var u=curUser(),box=$('#fmResults');if(!u||!box)return;
+    box.innerHTML=famResultsHtml(famCollect(u));
+    if(focusPage){var b=box.querySelector('[data-fm-page="'+fam.page+"\"]");if(b)b.focus()}
+  }
+  function famPage(u){
+    if(fam.owner!==u.id){fam.owner=u.id;fam.q='';fam.page=1}
+    var rows=famCollect(u),n=rows.length,month=rows.filter(function(r){return r.created>=Date.now()-30*86400000}).length,
+        h='<div class="wrap accpage fmpage">'+crumbA('My Family Members')+
+      '<header class="acchead"><span class="avatar">'+ic('users')+'</span><div><h1>My Family Members</h1><p class="muted">Members who registered through your referral link</p></div><a class="btn" href="#account/referral">Invite more</a></header>'+
+      '<section class="fm-stats" aria-label="Family summary"><div class="fm-stat main"><span class="ai">'+ic('users')+'</span><div><small>Total family members</small><b id="fmTotal">'+n+'</b></div></div>'+
+      '<div class="fm-stat"><small>Joined in last 30 days</small><b>'+month+'</b></div>'+
+      '<div class="fm-stat"><small>Latest member joined</small><b class="d">'+(n?fdate(rows[n-1].created):'None yet')+'</b></div></section>';
+    if(!n){
+      h+='<div class="empty"><span class="eico">'+ic('users')+'</span><h2>No family members yet</h2><p>No family members registered yet. Share your referral link to invite new members.</p><div class="row2"><button class="btn solid" type="button" data-share-ref>Share your link</button><button class="btn" type="button" data-copy-ref>Copy Link</button></div></div>';
+    }else{
+      h+='<section class="fm-card" id="fmCard" aria-labelledby="fmH"><div class="fm-bar"><h2 id="fmH">Registered through your link</h2><div class="fm-tools">'+
+        '<div class="fm-search">'+ic('search')+'<input id="fmSearch" type="search" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Search by Member ID, e.g. CUST-1005" aria-label="Search family members by Member ID" value="'+esc(fam.q)+'"></div>'+
+        '<label class="fm-per">Rows<select id="fmPer" aria-label="Rows per page">'+[10,25,50].map(function(v){return'<option value="'+v+'"'+(v===fam.per?' selected':'')+'>'+v+'</option>'}).join('')+'</select></label></div></div>'+
+        '<div id="fmResults">'+famResultsHtml(rows)+'</div></section>';
+    }
+    return h+ACCNOTE+'</div>';
+  }
   function renderAccount(sub){
     var u=curUser(),v=$('#accountView'),h;
     if(!u){
@@ -2318,10 +2672,7 @@ window.CHOWK_API_BASE='';
       '<section class="accsec"><dl class="kv"><dt>Name</dt><dd>'+esc(u.name)+'</dd><dt>Client ID</dt><dd>'+esc(u.id)+'</dd><dt>Email / mobile</dt><dd>'+esc(u.email||u.login)+'</dd><dt>Phone number</dt><dd>'+esc(u.phone||'Not provided')+'</dd><dt>Member since</dt><dd>'+fdate(u.created)+'</dd><dt>Invited by</dt><dd>'+(rb?esc(first(rb.name)):'Joined directly')+'</dd><dt>Delivery location</dt><dd>'+locProfile()+'</dd></dl></section>'+
       '<section class="accsec"><h2>Edit profile</h2><form class="of" data-profile novalidate><label>Full name<input name="name" maxlength="60" value="'+esc(u.name)+'" autocomplete="name"></label><label>Phone number<input name="phone" maxlength="30" value="'+esc(u.phone||'')+'" autocomplete="tel" placeholder="+92 300 1234567"></label><p class="ferr" role="alert"></p><button class="btn solid" type="submit">Save</button></form></section></div>';
     }else if(sub==='family'){
-      h='<div class="wrap accpage">'+crumbA('My Family')+'<header class="acchead"><span class="avatar">'+ic('users').replace('class="ico"','class="ico" style="width:30px;height:30px"')+'</span><div><h1>My Family</h1><p class="muted">'+fn+' registered through your referral link</p></div><a class="btn" href="#account/referral">Invite more</a></header>';
-      if(!n)h+='<div class="empty"><span class="eico">'+ic('users')+'</span><h2>No family members yet</h2><p>When someone creates an account using your referral link, they will appear here.</p><div class="row2"><button class="btn solid" type="button" data-share-ref>Share your link</button><button class="btn" type="button" data-copy-ref>Copy Link</button></div></div>';
-      else h+='<section class="accsec" style="margin-top:0"><table class="ftable"><thead><tr><th>Serial Number</th><th>Client ID</th><th>Customer Name</th><th>Registration Date</th></tr></thead><tbody>'+fam.map(function(f,i){return'<tr><td class="sn" data-l="Serial Number">'+(i+1)+'</td><td data-l="Client ID">'+esc(f.id)+'</td><td data-l="Customer Name">'+esc(f.name)+'</td><td data-l="Registration Date">'+fdate(f.created)+'</td></tr>'}).join('')+'</tbody></table></section>';
-      h+=ACCNOTE+'</div>';
+      h=famPage(u);
     }else if(sub==='referral'){
       h='<div class="wrap accpage">'+crumbA('My Referral Link')+'<header class="acchead"><span class="avatar">'+ic('link').replace('class="ico"','class="ico" style="width:30px;height:30px"')+'</span><div><h1>My Referral Link</h1><p class="muted">Your code: <b>'+esc(u.code)+'</b></p></div></header>'+
       '<section class="accsec" style="margin-top:0"><h2>Share your link</h2>'+refBox(u,true)+'</section>'+
@@ -2331,17 +2682,20 @@ window.CHOWK_API_BASE='';
       '<div class="accgrid">'+
       '<a class="acard" href="#account/profile">'+accIcon('user')+'<h2>My Profile</h2><p>'+esc(u.name)+'<br>'+esc(u.email||u.login)+(u.phone?'<br>'+esc(u.phone):'')+'</p><span class="go">View profile &rsaquo;</span></a>'+
       '<a class="acard" href="#account/family">'+accIcon('users')+'<h2>My Family</h2><span class="bignum" id="famNum">'+n+'</span><p>'+(n===1?'Family Member':'Family Members')+'</p><span class="go">View family list &rsaquo;</span></a>'+
-      '<a class="acard" href="#account/family">'+accIcon('users')+'<h2>Total Family Members</h2><span class="bignum">'+n+'</span><p>People who registered using your referral link</p><span class="go">See who joined &rsaquo;</span></a>'+
+      '<a class="acard fmcard" href="#account/family" aria-label="Family Members Registered Through Your Referral Link: '+n+'. Open My Family Members">'+accIcon('users')+'<span class="fmt"><h2>Family Members Registered Through Your Referral Link</h2><p>See every member who joined using your link, with their Member ID, registration date and status.</p></span><span class="bignum">'+n+'</span><span class="go">Open My Family Members &rsaquo;</span></a>'+
       '<section class="acard refc" data-ref-card aria-label="My Referral Link">'+accIcon('link')+'<h2>My Referral Link</h2><p>Share this link. Anyone who creates an account through it joins your family.</p>'+refBox(u,false)+'<span class="go">More sharing options &rsaquo;</span></section>'+
       '<a class="acard" href="#orders">'+accIcon('truck')+'<h2>My Orders</h2><p>Track your orders and delivery progress.</p><span class="go">Track orders &rsaquo;</span></a>'+
+      '<a class="acard" href="#pdf-downloads">'+accIcon('pdf')+'<h2>PDF Downloads</h2><p>Browse and download product PDFs by category.</p><span class="go">Open library &rsaquo;</span></a>'+
       '</div>'+ACCNOTE+'</div>';
     }
     v.innerHTML=h;
   }
   function showAccount(sub){
+    var keep=!$('#accountView').hidden&&fam.last===sub;
+    if(!keep){fam.q='';fam.page=1}fam.last=sub;
     hideAll();$('#accountView').hidden=false;
     renderAccount(sub);
-    document.title=({profile:'My Profile',family:'My Family',referral:'My Referral Link'}[sub]||'My Account')+' | Chowk';
+    document.title=({profile:'My Profile',family:'My Family Members',referral:'My Referral Link'}[sub]||'My Account')+' | Chowk';
     toTop();
   }
   $('#accountView').addEventListener('click',function(e){
@@ -2352,6 +2706,18 @@ window.CHOWK_API_BASE='';
     if(e.target.closest('[data-share-ref]')){shareLink(u);return}
     var rc=e.target.closest('[data-ref-card]');
     if(rc&&!e.target.closest('button,input,a'))goTo('#account/referral');
+    var pg=e.target.closest('[data-fm-page]');
+    if(pg&&!pg.disabled){fam.page=+pg.dataset.fmPage||1;famRefresh(true);var cd=$('#fmCard');if(cd&&cd.getBoundingClientRect().top<0)cd.scrollIntoView({block:'start'});return}
+    if(e.target.closest('[data-fm-clear]')){fam.q='';fam.page=1;var si=$('#fmSearch');if(si){si.value='';si.focus()}famRefresh();return}
+  });
+  $('#accountView').addEventListener('input',function(e){
+    if(e.target.id==='fmSearch'){fam.q=e.target.value;fam.page=1;famRefresh()}
+  });
+  $('#accountView').addEventListener('change',function(e){
+    if(e.target.id==='fmPer'){fam.per=+e.target.value||10;fam.page=1;famRefresh()}
+  });
+  window.addEventListener('storage',function(e){
+    if(e.key===UKEY&&!$('#accountView').hidden&&fam.last==='family'&&curUser()){var f=document.activeElement&&document.activeElement.id==='fmSearch';renderAccount('family');if(f){var si=$('#fmSearch');if(si){si.focus();var l=si.value.length;si.setSelectionRange(l,l)}}}
   });
   $('#accountView').addEventListener('focusin',function(e){if(e.target.id==='refInput')e.target.select()});
   $('#accountView').addEventListener('submit',function(e){
@@ -2436,13 +2802,16 @@ window.CHOWK_API_BASE='';
     if(API)return apiCall('POST','/api/auth/reset-password',{token:tok,password:pw,confirmPassword:pw2});
     return localCheck(tok).then(function(r){
       if(!r.ok)return r;
-      return hashPw(pw).then(function(hp){
-        if(hp===r.u.pass)return{ok:false,reason:'same',message:'Your new password must be different from your old password.'};
-        r.u.pass=hp;saveUsers();
+      return verifyPw(r.u,pw).then(function(same){
+        if(same)return{ok:false,reason:'same',message:'Your new password must be different from your old password.'};
+        var salt=newSalt();
+        return hashSalted(pw,salt).then(function(hp){
+        loadUsers();var cu=userBy(r.u.id)||r.u;cu.salt=salt;cu.pass=hp;saveUsers();
         var a=loadTok();a.forEach(function(t){if(t.uid===r.u.id)t.used=true});saveTok(a);
         var sid=null;try{sid=localStorage.getItem(SKEY)}catch(x){}
         if(sid===r.u.id){try{localStorage.removeItem(SKEY)}catch(x){}syncAuthUi()}
         return{ok:true,email:r.u.login};
+        });
       });
     });
   }
@@ -2698,10 +3067,28 @@ window.CHOWK_API_BASE='';
   }
   function locProfile(){
     if(!LOC)return'Not set <button type="button" class="lk" data-loc-open>Set location</button>';
-    return esc(locLine(LOC))+' <button type="button" class="lk" data-loc-open>Change</button>';
+    return esc(locLine(LOC))+(locHasPin(LOC)?' <span class="pinbadge">'+ic('pin')+'Pinned on map</span>':'')+' <button type="button" class="lk" data-loc-open>Change</button>';
   }
   function locOrderAddr(){return LOC?[LOC.address,LOC.area].filter(Boolean).join(', ')||DEMO.addr:DEMO.addr}
   function locOrderCity(){return LOC?LOC.city:DEMO.city}
+  function locHasPin(l){return !!(l&&l.lat!=null&&l.lon!=null&&isFinite(l.lat)&&isFinite(l.lon))}
+  function locOrderGeo(){return locHasPin(LOC)?{lat:+LOC.lat,lon:+LOC.lon}:null}
+  function locMapUrl(g){return g&&isFinite(g.lat)&&isFinite(g.lon)?'https://www.google.com/maps/search/?api=1&query='+(+g.lat)+','+(+g.lon):''}
+  function locMapLink(g){var u=locMapUrl(g);return u?' <a class="maplk" href="'+esc(u)+'" target="_blank" rel="noopener">View pin on map</a>':''}
+  /* delivery location block shown in the cart / checkout summary */
+  function locBlock(){
+    var h='<div class="locblk" id="locBlock">';
+    if(!LOC){
+      return h+'<div class="lbh">'+ic('pin')+'<span>Delivery location</span></div><p>Add where we should deliver this order. It is required to check out.</p><div class="lbrow"><button class="btn solid" type="button" data-loc-open data-loc-send>'+ic('pin')+'Send My Location</button><button class="btn" type="button" data-loc-open>Enter address</button></div></div>';
+    }
+    var i=locInfo(LOC),bad=!!(i&&!i.ok);
+    h+='<div class="lbh">'+ic('pin')+'<span>Delivery location</span>'+(locHasPin(LOC)?'<em>Pinned on map</em>':'')+'</div>'+
+      '<p class="lbadr">'+esc(locLine(LOC))+'</p>'+
+      (bad?'<p class="lbwarn">We don’t deliver here yet. Choose an address in Pakistan to check out.</p>':'')+
+      (locHasPin(LOC)&&locMapUrl(LOC)?'<p>'+locMapLink(LOC).replace(/^ /,'')+'</p>':'')+
+      '<div class="lbrow"><button class="btn" type="button" data-loc-open data-loc-send>'+ic('pin')+'Update my location</button><button class="btn" type="button" data-loc-open>Change address</button></div></div>';
+    return h;
+  }
   function locCheckout(){
     if(!LOC){openLoc('Choose where we should deliver your order, then press Checkout again.');return false}
     var i=locInfo(LOC);
@@ -2856,7 +3243,7 @@ window.CHOWK_API_BASE='';
   }
 
   /* use my current location (browser Geolocation API, always with the customer's permission) */
-  function lmGpsBusy(b){var g=$('#locGps');g.disabled=b;g.classList.toggle('busy',b);$('#locGpsT').textContent=b?'Detecting your location…':'Use my current location'}
+  function lmGpsBusy(b){var g=$('#locGps');g.disabled=b;g.classList.toggle('busy',b);$('#locGpsT').textContent=b?'Detecting your location…':'Send My Location'}
   function lmFallback(text){lmGpsBusy(false);lmTab('manual');lmMsg('warn',text);$('#locCity').focus()}
   function lmGps(){
     lmMsg('');
@@ -2885,12 +3272,241 @@ window.CHOWK_API_BASE='';
     },{enableHighAccuracy:true,timeout:12000,maximumAge:60000});
   }
 
+  /* ---- Send My Location: map picker ----
+     - Map: Leaflet + OpenStreetMap tiles, loaded on demand the first time the picker opens (no API key).
+       Override with window.CHOWK_LEAFLET_BASE and window.CHOWK_TILE_URL (e.g. your own tile provider for heavy traffic).
+     - Nothing is selected or saved until the customer taps "Confirm location".
+     - GPS gives coordinates, not a street address. The address shown is reverse-geocoded (approximate)
+       and the customer must type or confirm their house / street details before confirming. */
+  var LEAF_BASE=String(window.CHOWK_LEAFLET_BASE||'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4').replace(/\/+$/,'');
+  var MM_TILES=String(window.CHOWK_TILE_URL||'https://tile.openstreetmap.org/{z}/{x}/{y}.png');
+  var MM_PK=[30.3753,69.3451];
+  var mm={view:'main',map:null,lp:null,failed:false,sel:null,seq:0,timer:null,gseq:0,prog:false,dirty:false,city:false,accC:null,items:[],act:-1,sseq:0,stimer:null,terr:0};
+
+  function mmLoadLeaflet(){
+    if(window.L&&window.L.map)return Promise.resolve();
+    if(mm.lp)return mm.lp;
+    function tag(el){return new Promise(function(res,rej){el.onload=res;el.onerror=function(){rej(new Error('load'))};document.head.appendChild(el)})}
+    var css=document.createElement('link');css.rel='stylesheet';css.href=LEAF_BASE+'/leaflet.css';
+    var js=document.createElement('script');js.src=LEAF_BASE+'/leaflet.js';js.async=true;
+    var to=new Promise(function(res,rej){setTimeout(function(){rej(new Error('timeout'))},15000)});
+    mm.lp=Promise.race([Promise.all([tag(css),tag(js)]),to]).then(function(){if(!(window.L&&window.L.map))throw new Error('nol')}).catch(function(e){
+      mm.lp=null;[css,js].forEach(function(n){if(n.parentNode)n.parentNode.removeChild(n)});throw e;
+    });
+    return mm.lp;
+  }
+  function lmView(v){
+    mm.view=v;var m=v==='map';
+    $('#locBody').hidden=m;$('#locFoot').hidden=m;$('#locMapBody').hidden=!m;$('#locMapFoot').hidden=!m;
+    $('#locTitle').textContent=m?'Send my location':'Set delivery location';
+    $('#locSub').textContent=m?'Check the pin, add your address details, then confirm.':'We use it to show delivery availability, charges and arrival dates.';
+  }
+  function mmMsg(kind,text){var m=$('#lmmMsg');if(!text){m.hidden=true;m.textContent='';return}m.className='lm-msg '+kind;m.textContent=text;m.hidden=false}
+  function mmBusy(b){var c=$('#lmmLocate');c.disabled=b;c.classList.toggle('busy',b);$('#lmmLocateT').textContent=b?'Detecting your location…':'Use my current location'}
+  function mmLift(on){$('#lmmPin').classList.toggle('lift',on);$('#lmmDot').classList.toggle('lift',on)}
+  function mmInvalidate(){if(!mm.map)return;mm.prog=true;try{mm.map.invalidateSize({pan:false})}catch(e){}mm.prog=false}
+  function mmStartView(){
+    if(LOC&&isFinite(LOC.lat)&&LOC.lat!=null&&isFinite(LOC.lon)&&LOC.lon!=null)return{c:[+LOC.lat,+LOC.lon],z:16,saved:true};
+    var rec=LOC&&LOC.city?locCityRec(LOC.city):null;
+    if(rec)return{c:[rec[3],rec[4]],z:12};
+    return{c:MM_PK,z:5};
+  }
+  function mmInitMap(){
+    if(mm.map)return;
+    var v=mmStartView();mm.prog=true;
+    var map=L.map('lmmMap',{center:v.c,zoom:v.z,zoomControl:true,attributionControl:true});
+    var tl=L.tileLayer(MM_TILES,{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'}).addTo(map);
+    mm.map=map;mm.prog=false;
+    tl.on('tileload',function(){mm.terr=0});
+    tl.on('tileerror',function(){if(++mm.terr===6)mmMsg('warn','Map tiles couldn’t load. Check your connection. You can still search for an address or use your current location.')});
+    map.on('movestart',function(){if(!mm.prog)mmLift(true)});
+    map.on('moveend',function(){
+      mmLift(false);if(mm.prog)return;
+      var c=map.getCenter();
+      if(mm.sel){var p=map.latLngToContainerPoint([mm.sel.lat,mm.sel.lon]),q=map.getSize().divideBy(2);if(p.distanceTo(q)<4)return}
+      mm.city=false;if(mm.accC){map.removeLayer(mm.accC);mm.accC=null}
+      mmSelect(c.lat,c.lng,'map');
+    });
+    map.on('click',function(e){map.panTo(e.latlng)});
+  }
+  /* show the selected point on the map (moves the view, never selects anything by itself) */
+  function mmShow(zoom){
+    var s=mm.sel;if(!mm.map||!s)return;
+    mm.prog=true;
+    try{mm.map.setView([s.lat,s.lon],zoom||mm.map.getZoom(),{animate:false})}catch(e){}
+    mm.prog=false;
+    if(mm.accC){mm.map.removeLayer(mm.accC);mm.accC=null}
+    if(s.acc&&s.acc>0&&window.L)mm.accC=L.circle([s.lat,s.lon],{radius:s.acc,color:'#0B7A6B',weight:1,fillOpacity:.12,interactive:false}).addTo(mm.map);
+  }
+  function mmGo(lat,lon,zoom,src,acc,cityLevel){
+    mm.city=!!cityLevel;mm.zoom=zoom;
+    mmSelect(lat,lon,src,acc);mmShow(zoom);
+  }
+  function mmReset(){
+    mm.seq++;mm.gseq++;mm.sseq++;clearTimeout(mm.timer);clearTimeout(mm.stimer);
+    mm.sel=null;mm.dirty=false;mm.city=false;mm.terr=0;
+    if(mm.map&&mm.accC){mm.map.removeLayer(mm.accC)}mm.accC=null;
+    $('#lmmQ').value='';mmList([],'');mmMsg('');
+    $('#lmmDetail').value='';$('#lmmDetailE').textContent='';$('#lmmDetail').setAttribute('aria-invalid','false');
+    mmBusy(false);mmCard();
+  }
+  function mmSelect(lat,lon,src,acc){
+    lat=+(+lat).toFixed(5);lon=+(+lon).toFixed(5);
+    var my=++mm.seq;clearTimeout(mm.timer);
+    mm.sel={lat:lat,lon:lon,src:src,acc:acc||0,g:null};
+    mmMsg('');mmCard();
+    mm.timer=setTimeout(function(){mmReverse(my)},src==='map'?550:0);
+  }
+  function mmReverse(my){
+    var s=mm.sel;if(!s||my!==mm.seq)return;
+    locFetch('/reverse?format=jsonv2&addressdetails=1&zoom=18&accept-language=en&lat='+s.lat+'&lon='+s.lon,8000).then(function(j){
+      if(!j||!j.address)throw new Error('none');
+      var g=locFromNom(j);g.lat=s.lat;g.lon=s.lon;return g;
+    }).catch(function(){return locNearest(s.lat,s.lon)}).then(function(g){
+      if(my!==mm.seq||!lm.open||mm.view!=='map')return;
+      if(!g.city){var n=locNearest(s.lat,s.lon);if(n.city){g.city=n.city;g.state=g.state||n.state;g.country=g.country||n.country;g.cc=g.cc||n.cc;g.near=true}}
+      s.g=g;
+      var notes=[],kind='info';
+      if(mm.failed){kind='warn';notes.push('The map couldn’t be loaded, but you can still confirm this location below.')}
+      if(g.near){kind='warn';notes.push(g.city?'We couldn’t look up the street address, so this was matched to the nearest city ('+g.city+'). Please type your address below.':'We couldn’t match this spot to a city. You’ll be asked to enter your city next.')}
+      else if(!g.address)notes.push('No street address was found for this exact spot. Type your house number, street and landmark below.');
+      if(s.src==='gps'&&s.acc>150){kind='warn';notes.push('Your device reported an accuracy of about '+Math.round(s.acc)+' m, so the pin may be off. Drag the map to adjust it.')}
+      if(mm.city)notes.push('This is the centre of the area you searched. Zoom in and move the pin to your exact spot.');
+      mmMsg(kind,notes.join(' '));
+      if(!mm.dirty)$('#lmmDetail').value=mm.city?'':(g.address||'');
+      mmCard();
+    });
+  }
+  function mmCard(){
+    var s=mm.sel,t=$('#lmmAddr'),sub=$('#lmmSub'),k=$('#lmmKind'),btn=$('#lmmConfirm'),info=$('#lmmInfo');
+    if(!s){k.textContent='Selected location';t.textContent='Nothing selected yet';sub.textContent='Use your current location, search for an address, or drag the map to place the pin.';btn.disabled=true;info.hidden=true;info.innerHTML='';return}
+    var coord='Lat '+s.lat.toFixed(5)+', Lng '+s.lon.toFixed(5)+(s.acc?' · accuracy about '+Math.round(s.acc)+' m':'');
+    k.textContent=s.src==='gps'?'Your current location':(s.src==='search'?'Searched location':'Pin location');
+    if(!s.g){t.textContent='Finding address…';sub.textContent=coord;btn.disabled=true;info.hidden=true;info.innerHTML='';return}
+    var g=s.g,head=g.address||g.area||g.city||'Address not identified',seen={},parts=[];
+    seen[locNorm(head)]=1;
+    [g.area,g.city,g.state,g.country].forEach(function(p){var n=locNorm(p);if(p&&!seen[n]){seen[n]=1;parts.push(p)}});
+    t.textContent=head;
+    sub.innerHTML=(parts.length?esc(parts.join(', '))+'<br>':'')+esc(coord)+'<br>Approximate address from map data.';
+    btn.disabled=false;
+    var i=locInfo(g);
+    if(!i){info.hidden=true;info.innerHTML='';return}
+    if(!i.ok)info.className='lm-info no',info.innerHTML='<span class="ii">'+ic('x')+'</span><div><b>Delivery isn’t available here yet</b><p>'+esc(i.reason)+'</p></div>';
+    else info.className='lm-info',info.innerHTML='<span class="ii">'+ic('check')+'</span><div><b>Delivery available to '+esc(g.city)+'</b><p>Delivery charge: <b style="display:inline;font-size:inherit">Rs. '+fmt(i.fee)+'</b> <span class="mut">(free on orders above Rs. '+fmt(LOC_FREE)+')</span></p><p>Estimated delivery: <b style="display:inline;font-size:inherit">'+locDates(i.min,i.max)+'</b></p></div>';
+    info.hidden=false;
+  }
+  function mmLocate(){
+    mmMsg('');
+    if(!navigator.geolocation){mmMsg('err','Your browser can’t detect your location. Search for an address or drag the map to place the pin.');return}
+    if(window.isSecureContext===false){mmMsg('err','Location detection only works on secure (https) pages. Search for an address or drag the map to place the pin.');return}
+    var my=++mm.gseq;mmBusy(true);mmMsg('info','Allow location access when your browser asks. This usually takes a few seconds.');
+    navigator.geolocation.getCurrentPosition(function(pos){
+      if(my!==mm.gseq||!lm.open||mm.view!=='map')return;
+      mmBusy(false);mmMsg('');
+      var c=pos.coords;
+      mmGo(c.latitude,c.longitude,c.accuracy>500?15:17,'gps',c.accuracy,false);
+    },function(err){
+      if(my!==mm.gseq||!lm.open||mm.view!=='map')return;
+      mmBusy(false);
+      var c=err&&err.code;
+      mmMsg('err',c===1?'Location permission was denied. To send your location, allow location access for this site in your browser settings and try again. You can also search for an address or drag the map.':
+        c===3?'Detecting your location took too long. Please try again, or search for an address or drag the map.':
+        'Your device couldn’t detect its location. Check that location services (GPS) are on, or search for an address or drag the map.');
+    },{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+  }
+  /* search inside the map view */
+  function mmList(items,status,kind){
+    mm.items=items;mm.act=-1;
+    var ul=$('#lmmList'),q=$('#lmmQ');
+    ul.innerHTML=items.map(function(it,k){return'<li role="option" id="lmmOpt'+k+'" data-k="'+k+'" aria-selected="false"><span class="lo-i">'+ic('pin')+'</span><span class="lo-t"><b>'+esc(it.title)+'</b><small>'+esc(it.sub)+'</small></span></li>'}).join('');
+    ul.hidden=!items.length;q.setAttribute('aria-expanded',items.length?'true':'false');q.removeAttribute('aria-activedescendant');
+    var s=$('#lmmSMsg');s.className='lm-hint'+(kind?' '+kind:'');s.textContent=status||'';s.hidden=!status;
+  }
+  function mmActive(k){
+    var o=$('#lmmList').children,i;
+    for(i=0;i<o.length;i++)o[i].setAttribute('aria-selected',i===k?'true':'false');
+    mm.act=k;
+    if(k>=0&&o[k]){$('#lmmQ').setAttribute('aria-activedescendant',o[k].id);o[k].scrollIntoView({block:'nearest'})}else $('#lmmQ').removeAttribute('aria-activedescendant');
+  }
+  var MM_COARSE={city:13,town:13,village:14,municipality:12,county:11,state_district:11,state:8,region:8,country:5,suburb:15,neighbourhood:15,quarter:15,city_district:14,hamlet:15,borough:14};
+  function mmSearchRemote(q,my){
+    var url='/search?format=jsonv2&addressdetails=1&limit=7&accept-language=en&viewbox=60.87,37.10,77.84,23.69&bounded=0&q='+encodeURIComponent(q);
+    locFetch(url,9000).then(function(rows){
+      if(my!==mm.sseq)return;
+      var out=[],seen={};
+      locLocal(q).forEach(function(it){if(it.d.lat==null||it.d.area)return;seen[locNorm(it.d.city)]=1;out.push({title:it.title,sub:it.sub,lat:it.d.lat,lon:it.d.lon,zoom:12,coarse:true})});
+      (rows||[]).forEach(function(r){
+        if(!isFinite(+r.lat)||!isFinite(+r.lon))return;
+        var g=locFromNom(r),nm=locNorm(g.name),sk={},sub=[],at=String(r.addresstype||''),z=MM_COARSE[at];
+        var title=(g.name&&nm!==locNorm(g.city)&&nm!==locNorm(g.area))?g.name:(g.address||g.area||g.city||String(r.display_name||'').split(',')[0]);
+        sk[locNorm(title)]=1;
+        [g.area,g.city,g.state,g.country].forEach(function(p){var k=locNorm(p);if(p&&!sk[k]){sk[k]=1;sub.push(p)}});
+        var key=locNorm(title+' '+sub.join(' '));if(seen[key])return;seen[key]=1;
+        out.push({title:title,sub:sub.join(', '),lat:+r.lat,lon:+r.lon,zoom:z||17,coarse:!!z});
+      });
+      out=out.slice(0,8);
+      mmList(out,out.length?'':'No places found. Try a different spelling, or drag the map to the right spot.',out.length?'':'err');
+    }).catch(function(){
+      if(my!==mm.sseq)return;
+      var local=locLocal(q).filter(function(it){return it.d.lat!=null&&!it.d.area}).map(function(it){return{title:it.title,sub:it.sub,lat:it.d.lat,lon:it.d.lon,zoom:12,coarse:true}});
+      mmList(local,local.length?'Online search is unavailable right now. Showing cities from our built-in list.':'Online search is unavailable. Drag the map to place the pin instead.',local.length?'':'err');
+    });
+  }
+  function mmSearchInput(){
+    var q=$('#lmmQ').value.trim();clearTimeout(mm.stimer);mm.sseq++;
+    if(q.length<3){mmList([],q.length?'Keep typing…':'');return}
+    mmList([],'Searching…');var my=mm.sseq;
+    mm.stimer=setTimeout(function(){mmSearchRemote(q,my)},450);
+  }
+  function mmPick(k){
+    var it=mm.items[k];if(!it)return;
+    mmList([],'');$('#lmmQ').value=it.title;
+    mmGo(it.lat,it.lon,it.zoom,'search',0,it.coarse);
+  }
+  function mmConfirm(){
+    var s=mm.sel;if(!s||!s.g)return;
+    var detail=$('#lmmDetail').value.trim().replace(/\s+/g,' ');
+    if(detail.length<5){
+      $('#lmmDetailE').textContent='Enter your house / flat number, street and a landmark so the rider can find you.';
+      $('#lmmDetail').setAttribute('aria-invalid','true');$('#lmmDetail').focus();return;
+    }
+    var g=s.g,d={country:g.country,cc:g.cc,state:g.state,city:g.city,area:g.area,address:detail,lat:s.lat,lon:s.lon,src:s.src==='gps'?'gps':(s.src==='search'?'search':'map')};
+    lmFill(d);lmView('main');
+    if(!d.city){
+      lmTab('manual');lmMsg('warn','We couldn’t work out your city from the pin. Enter your city and check the country, then press Save location.');$('#locCity').focus();return;
+    }
+    lmSave();
+  }
+  function lmMapOpen(gps){
+    lmView('map');mmReset();
+    $('#lmmLoad').hidden=false;$('#lmmMapWrap').hidden=false;
+    mmLoadLeaflet().then(function(){
+      if(!lm.open||mm.view!=='map')return;
+      mm.failed=false;mmInitMap();
+      if(mm.sel)mmShow(mm.zoom||17);
+      else{var v=mmStartView();mm.prog=true;mm.map.setView(v.c,v.z,{animate:false});mm.prog=false;if(v.saved)mmMsg('info','Your saved location is shown. Move the map or use your current location to update it.')}
+      $('#lmmLoad').hidden=true;
+      setTimeout(mmInvalidate,80);
+    },function(){
+      if(!lm.open||mm.view!=='map')return;
+      mm.failed=true;$('#lmmMapWrap').hidden=true;$('#lmmMapHint').hidden=true;
+      mmMsg('warn','The map couldn’t be loaded. Check your connection. You can still use your current location or search for an address.');
+    });
+    $('#lmmMapHint').hidden=false;
+    if(gps){mmLocate();$('#lmmBack').focus()}else $('#lmmQ').focus();
+  }
+  function lmBack(){
+    mm.gseq++;mm.seq++;mm.sseq++;clearTimeout(mm.timer);clearTimeout(mm.stimer);mmBusy(false);
+    lmView('main');$('#locGps').focus();
+  }
+
   function openLoc(notice,kind){
     if(lm.open)return;
     lm.prev=document.activeElement;lm.open=true;
     var u=curUser();
     lmFill(LOC||{country:'Pakistan',cc:'PK'});
     lmTab(LOC?'manual':'search');lmList([],'Type at least 2 letters to search.');$('#locQ').value='';
+    lmView('main');mmReset();
     lmGpsBusy(false);lmMsg(notice?(kind||'info'):'',notice||'');
     $('#locAcct').hidden=!!u;$('#locClear').hidden=!LOC;
     $('#locScrim').hidden=false;document.body.style.overflow='hidden';
@@ -2901,7 +3517,7 @@ window.CHOWK_API_BASE='';
   }
   function lmClose(quiet){
     if(!lm.open)return;
-    lm.open=false;lm.seq++;lm.gseq++;clearTimeout(lm.timer);
+    lm.open=false;lm.seq++;lm.gseq++;clearTimeout(lm.timer);mm.seq++;mm.gseq++;mm.sseq++;clearTimeout(mm.timer);clearTimeout(mm.stimer);
     $('#locScrim').hidden=true;document.body.style.overflow='';
     if(!quiet&&lm.prev&&lm.prev.focus&&document.contains(lm.prev))lm.prev.focus();
   }
@@ -2930,11 +3546,28 @@ window.CHOWK_API_BASE='';
     document.addEventListener('click',function(e){
       var b=e.target.closest('[data-loc-open]');if(!b)return;
       e.preventDefault();openLoc();
+      if(b.hasAttribute('data-loc-send')&&lm.open)lmMapOpen(true);
     });
     $('#locClose').addEventListener('click',function(){lmClose()});
     $('#locCancel').addEventListener('click',function(){lmClose()});
     $('#locScrim').addEventListener('mousedown',function(e){if(e.target===this)lmClose()});
-    $('#locGps').addEventListener('click',lmGps);
+    $('#locGps').addEventListener('click',function(){lmMapOpen(true)});
+    $('#locMapBtn').addEventListener('click',function(){lmMapOpen(false)});
+    $('#lmmBack').addEventListener('click',lmBack);
+    $('#lmmCancel').addEventListener('click',lmBack);
+    $('#lmmLocate').addEventListener('click',mmLocate);
+    $('#lmmConfirm').addEventListener('click',mmConfirm);
+    $('#lmmDetail').addEventListener('input',function(){mm.dirty=true;if(this.value.trim().length>4){$('#lmmDetailE').textContent='';this.setAttribute('aria-invalid','false')}});
+    $('#lmmQ').addEventListener('input',mmSearchInput);
+    $('#lmmQ').addEventListener('keydown',function(e){
+      var n=mm.items.length;
+      if(e.key==='ArrowDown'&&n){e.preventDefault();mmActive((mm.act+1)%n)}
+      else if(e.key==='ArrowUp'&&n){e.preventDefault();mmActive(mm.act<=0?n-1:mm.act-1)}
+      else if(e.key==='Enter'){e.preventDefault();if(n)mmPick(mm.act>=0?mm.act:0)}
+      else if(e.key==='Escape'&&n){e.stopPropagation();mmList([],'')}
+    });
+    $('#lmmList').addEventListener('mousedown',function(e){e.preventDefault()});
+    $('#lmmList').addEventListener('click',function(e){var li=e.target.closest('li[data-k]');if(li)mmPick(+li.dataset.k)});
     $('#locTabSearch').addEventListener('click',function(){lmTab('search');$('#locQ').focus()});
     $('#locTabManual').addEventListener('click',function(){lmTab('manual')});
     $('#locSave').addEventListener('click',lmSave);
@@ -2955,7 +3588,7 @@ window.CHOWK_API_BASE='';
     $('#locList').addEventListener('mousedown',function(e){e.preventDefault()});
     $('#locList').addEventListener('click',function(e){var li=e.target.closest('li[data-k]');if(li)lmPick(+li.dataset.k)});
     $('#locScrim').addEventListener('keydown',function(e){
-      if(e.key==='Escape'){e.preventDefault();lmClose();return}
+      if(e.key==='Escape'){e.preventDefault();if(mm.view==='map')lmBack();else lmClose();return}
       if(e.key!=='Tab')return;
       var f=[].filter.call(this.querySelectorAll('button,[href],input,select,textarea'),function(x){return !x.disabled&&x.offsetParent!==null&&x.tabIndex>=0});
       if(!f.length)return;
@@ -2966,6 +3599,112 @@ window.CHOWK_API_BASE='';
     window.addEventListener('storage',function(e){if(e.key===LOC_GKEY)locSync()});
     locSync();locReady=true;
   })();
+
+  /* ===== PDF Downloads: customer-facing library =====
+     DATA SOURCE (ready for the future admin upload system):
+     - Set window.CHOWK_API_BASE and the page loads GET {base}/api/pdfs. The server must return ONLY
+       documents that are published and that this customer may access (enforce this on the server, and
+       serve the files from access-controlled URLs). Expected shape: an array, or {items:[...]}, of
+         { id, category, title, description?, url, pages?, sizeKb?, publishedAt?, status:'published' }
+       where category is one of: grocery, cosmetics, baby, household, electronics, other.
+     - Without an API, you can hand-list files in window.CHOWK_PDFS (same shape) before this script.
+     - The page also re-checks every item (status, schedule, category, safe http(s) URL) before showing it.
+     No PDF files are bundled. While a category has none, a clearly labelled, non-clickable sample layout is shown. */
+  var PDF_CATS=[['grocery','Grocery PDF','basket',95],['cosmetics','Cosmetics PDF','bottle',330],['baby','Baby Products PDF','baby',190],['household','Household Products PDF','home',45],['electronics','Electronics PDF','laptop',205],['other','Other PDFs','pdf',260]];
+  var PDF_BASE=String(window.CHOWK_API_BASE||'').replace(/\/+$/,'');
+  var pdfSt={docs:[],loaded:false,loading:false,failed:false,cat:'all'};
+  function pdfCat(k){for(var i=0;i<PDF_CATS.length;i++)if(PDF_CATS[i][0]===k)return PDF_CATS[i];return null}
+  function pdfSafeUrl(u){try{var x=new URL(String(u||''),location.href);return(x.protocol==='https:'||x.protocol==='http:')?x.href:''}catch(e){return''}}
+  function pdfLive(d){
+    if(!d||typeof d!=='object'||d.status!=='published')return false;
+    if(!pdfCat(d.category)||typeof d.title!=='string'||!d.title.trim())return false;
+    if(d.publishAt&&Date.parse(d.publishAt)>Date.now())return false;
+    if(d.unpublishAt&&Date.parse(d.unpublishAt)<=Date.now())return false;
+    return !!pdfSafeUrl(d.url);
+  }
+  function pdfDocById(id){for(var i=0;i<pdfSt.docs.length;i++)if(String(pdfSt.docs[i].id)===String(id))return pdfSt.docs[i];return null}
+  function pdfLoad(){
+    if(pdfSt.loading)return;
+    var local=Array.isArray(window.CHOWK_PDFS)?window.CHOWK_PDFS:[];
+    if(!PDF_BASE){pdfSt.docs=local.filter(pdfLive);pdfSt.loaded=true;pdfSt.failed=false;pdfRender();return}
+    pdfSt.loading=true;pdfSt.failed=false;pdfRender();
+    fetch(PDF_BASE+'/api/pdfs',{headers:{'Accept':'application/json'}}).then(function(r){
+      if(!r.ok)throw new Error('http '+r.status);return r.json();
+    }).then(function(j){
+      var a=Array.isArray(j)?j:(j&&Array.isArray(j.items)?j.items:[]);
+      pdfSt.docs=a.filter(pdfLive);pdfSt.loaded=true;pdfSt.loading=false;pdfRender();
+    }).catch(function(){pdfSt.loading=false;pdfSt.failed=true;pdfSt.loaded=true;pdfRender()});
+  }
+  function pdfThumb(c){return'<span class="pthumb" style="--h:'+c[3]+'">'+ic(c[2])+'<b>PDF</b></span>'}
+  function pdfCard(d){
+    var c=pdfCat(d.category),meta=[];
+    if(d.pages)meta.push(+d.pages+' pages');
+    if(d.sizeKb)meta.push(d.sizeKb>=1024?(d.sizeKb/1024).toFixed(1)+' MB':Math.round(d.sizeKb)+' KB');
+    if(d.publishedAt&&!isNaN(Date.parse(d.publishedAt)))meta.push('Updated '+fdate(Date.parse(d.publishedAt)));
+    return'<article class="pcard">'+pdfThumb(c)+'<div class="pinfo2"><span class="pcatn">'+esc(c[1])+'</span><h3 class="ptitle">'+esc(d.title)+'</h3>'+(d.description?'<p class="pdesc">'+esc(d.description)+'</p>':'')+(meta.length?'<span class="pmeta">'+esc(meta.join(' · '))+'</span>':'')+'</div>'+
+      '<div class="pbtns"><a class="pbtn" href="'+esc(pdfSafeUrl(d.url))+'" target="_blank" rel="noopener" aria-label="View PDF: '+esc(d.title)+'">'+ic('eye')+'View PDF</a>'+
+      '<button class="pbtn solid" type="button" data-pdl="'+esc(d.id)+'" aria-label="Download PDF: '+esc(d.title)+'">'+ic('download')+'Download PDF</button></div></article>';
+  }
+  function pdfSample(c){
+    return'<article class="pcard sample" aria-label="Sample layout, no PDF available yet">'+pdfThumb(c)+'<div class="pinfo2"><span class="pcatn">'+esc(c[1])+'</span><h3 class="ptitle">PDF title will appear here</h3><span class="ptag2">Sample layout &middot; no PDF published yet</span></div>'+
+      '<div class="pbtns"><button class="pbtn" type="button" disabled>'+ic('eye')+'View PDF</button><button class="pbtn solid" type="button" disabled>'+ic('download')+'Download PDF</button></div></article>';
+  }
+  function pdfRender(){
+    var v=$('#pdfView');if(!v||v.hidden)return;
+    var cur=pdfSt.cat!=='all'&&pdfCat(pdfSt.cat)?pdfSt.cat:'all',total=pdfSt.docs.length;
+    var h='<div class="wrap pdfpage"><nav class="crumbs" aria-label="Breadcrumb"><a class="lk" href="#top">Home</a><span>&rsaquo;</span><b>PDF Downloads</b></nav>'+
+      '<header class="cathead"><span class="chico" style="--h:175">'+ic('pdf')+'</span><div><h1>PDF Downloads</h1><p>Browse, view and download product PDFs by category.</p></div></header>'+
+      '<p class="note pdfnote">Only PDFs published by Chowk are listed here. New documents appear automatically once they are published.</p>';
+    if(pdfSt.loading||!pdfSt.loaded){
+      h+='<div class="skel" role="status" aria-busy="true" style="height:56px"></div><div class="skel" style="margin-top:14px;height:220px"></div><span class="sr">Loading PDFs</span>';
+    }else if(pdfSt.failed){
+      h+='<div class="empty"><span class="eico">'+ic('pdf')+'</span><h2>Could not load PDFs</h2><p>We could not reach the server. Check your connection and try again.</p><div class="row2"><button class="btn solid" type="button" data-pdf-retry>Try again</button></div></div>';
+    }else{
+      var cnt={};pdfSt.docs.forEach(function(d){cnt[d.category]=(cnt[d.category]||0)+1});
+      h+='<div class="chips pdfchips" role="group" aria-label="Filter PDFs by category"><button class="chip" type="button" data-pcat="all" aria-pressed="'+(cur==='all')+'">All categories<i>'+total+'</i></button>'+
+        PDF_CATS.map(function(c){return'<button class="chip" type="button" data-pcat="'+c[0]+'" aria-pressed="'+(cur===c[0])+'">'+esc(c[1])+'<i>'+(cnt[c[0]]||0)+'</i></button>'}).join('')+'</div>';
+      PDF_CATS.forEach(function(c){
+        if(cur!=='all'&&cur!==c[0])return;
+        var list=pdfSt.docs.filter(function(d){return d.category===c[0]}).sort(function(a,b){return(Date.parse(b.publishedAt)||0)-(Date.parse(a.publishedAt)||0)});
+        h+='<section class="pdfsec" aria-labelledby="pdfh-'+c[0]+'"><div class="pdfsh"><span class="chico" style="--h:'+c[3]+'">'+ic(c[2])+'</span><h2 id="pdfh-'+c[0]+'">'+esc(c[1])+'</h2><span class="n">'+(list.length?plural(list.length).replace('item','PDF'):'Coming soon')+'</span></div>'+
+          '<div class="pdfgrid">'+(list.length?list.map(pdfCard).join(''):pdfSample(c))+'</div></section>';
+      });
+    }
+    v.innerHTML=h+'</div>';
+  }
+  function showPdfs(){
+    hideAll();$('#pdfView').hidden=false;document.title='PDF Downloads | Chowk';toTop();
+    if(PDF_BASE)pdfSt.loaded=false;
+    pdfRender();
+    if(PDF_BASE||!pdfSt.loaded)pdfLoad();
+  }
+  function pdfFile(d){return(slugify(d.title)||'document')+'.pdf'}
+  function pdfDownload(d,btn){
+    var url=pdfSafeUrl(d.url),old=btn.innerHTML;if(!url)return;
+    btn.disabled=true;btn.textContent='Preparing…';
+    var restore=function(){btn.disabled=false;btn.innerHTML=old};
+    fetch(url).then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.blob()}).then(function(b){
+      var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([b],{type:'application/pdf'}));a.download=pdfFile(d);
+      document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},4000);
+      restore();toast('Download started.');
+    }).catch(function(){
+      /* cross-origin files without CORS cannot be fetched: fall back to the browser's own download */
+      var a=document.createElement('a');a.href=url;a.download=pdfFile(d);a.rel='noopener';a.target='_blank';
+      document.body.appendChild(a);a.click();a.remove();restore();toast('Opening your download…');
+    });
+  }
+  $('#pdfView').addEventListener('click',function(e){
+    var c=e.target.closest('[data-pcat]');
+    if(c){pdfSt.cat=c.dataset.pcat;pdfRender();var b=$('#pdfView [data-pcat="'+pdfSt.cat+'"]');if(b)b.focus();return}
+    var dl=e.target.closest('[data-pdl]');
+    if(dl){var d=pdfDocById(dl.dataset.pdl);if(d&&pdfLive(d))pdfDownload(d,dl);else toast('This PDF is no longer available.');return}
+    if(e.target.closest('[data-pdf-retry]')){pdfLoad()}
+  });
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href="#pdf-downloads"]');
+    if(!a||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey)return;
+    e.preventDefault();goTo('#pdf-downloads');
+  });
 
   window.addEventListener('hashchange',route);
   captureRef();syncAuthUi();
