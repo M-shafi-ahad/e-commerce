@@ -985,6 +985,43 @@ a.chip{display:inline-flex;align-items:center}
 .pbtn:disabled{opacity:.45;cursor:not-allowed;border-color:var(--line);color:var(--muted);background:none}
 .pbtn.solid:disabled{background:var(--line);color:var(--muted)}
 .pdfempty{margin-top:14px}
+
+/* ===== You Earn (affiliate earnings -> coupons) ===== */
+.acard.earnc{cursor:default}
+.acard.earnc:hover{transform:none;box-shadow:none;border-color:var(--line)}
+.earn-top{display:flex;align-items:center;gap:12px}
+.earn-top h2{font-size:19px;font-weight:800}
+.earn-coin{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold),color-mix(in srgb,var(--gold) 50%,var(--sale)));color:var(--gold-ink);box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
+.earn-coin svg{width:24px;height:24px}
+.earn-row{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:10px 14px}
+.earn-row small{display:block;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.earn-amt{font-family:var(--f-display);font-size:clamp(26px,3.4vw,34px);font-weight:800;line-height:1.1;color:var(--brand);font-variant-numeric:tabular-nums;white-space:nowrap}
+.acard.earnc .btn{min-height:44px;border-radius:10px}
+.acard.earnc .btn:disabled{opacity:.5;cursor:not-allowed}
+.acard.earnc .btn:disabled:hover{border-color:var(--brand)}
+.earn-meta{font-size:13px;color:var(--muted)}
+.earn-test{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-ink);background:var(--gold);border-radius:99px;padding:2px 9px;vertical-align:middle}
+.accgrid>.earnbox,.accgrid>.earnhist{grid-column:1/-1;margin-top:0}
+.earn-ok{display:flex;align-items:center;gap:10px;color:var(--brand);font-weight:800;font-size:18px;font-family:var(--f-display)}
+.earn-ok svg{width:22px;height:22px;flex:none}
+.earn-code{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:12px;border:2px dashed var(--brand);background:var(--soft);border-radius:var(--r);padding:14px}
+.earn-code code{font-size:clamp(18px,4vw,24px);font-weight:800;letter-spacing:.08em;color:var(--brand);overflow-wrap:anywhere}
+.earn-code .ev{color:var(--muted);font-size:14px}
+.earn-code .ev b{color:var(--ink);font-size:18px;font-variant-numeric:tabular-nums}
+.earn-code .btn{margin-left:auto;display:inline-flex;align-items:center;gap:6px;min-height:44px}
+.earn-code .btn svg,.ftable .btn svg{width:16px;height:16px;flex:none}
+.earn-note{font-size:13px;color:var(--muted);margin-top:10px}
+.earnhist .muted{margin:0}
+.earnhist .ftable code{font-weight:800;letter-spacing:.05em}
+.ftable .btn{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;font-size:13px}
+@media(min-width:620px) and (max-width:999px){
+  .accgrid{grid-auto-flow:row dense}
+  .accgrid>*{order:5}
+  .accgrid>.acard[href="#account/family"]{order:1}
+  .accgrid>.earnc{order:2}
+  .accgrid>.earnbox{order:3}
+  .accgrid>.earnhist{order:4}
+}
 </style>
 </head>
 <body>
@@ -1043,6 +1080,8 @@ a.chip{display:inline-flex;align-items:center}
   <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></symbol>
   <symbol id="i-baby" viewBox="0 0 48 48"><rect x="15" y="20" width="18" height="22" rx="5"/><path d="M19 20v-4h10v4M24 16V8M21 8h6M15 29h18"/></symbol>
   <symbol id="i-home" viewBox="0 0 48 48"><path d="M6 23L24 7l18 16"/><path d="M11 20v21h26V20M20 41V29h8v12"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M17 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5"/><path d="M16 14h2"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></symbol>
 </svg>
 
 <!-- 1 Top announcement bar -->
@@ -1605,6 +1644,7 @@ window.CHOWK_API_BASE='';
     return true;
   }
   function couponEffect(code,sub,elec){
+    if(/^EARN-/.test(code))return earnCouponEffect(code,sub);
     if(code==='WELCOME300')return sub>=2000?{disc:300}:{err:'Add Rs. '+fmt(2000-sub)+' more to use WELCOME300.'};
     if(code==='FREESHIP')return sub>=2500?{free:true}:{err:'Add Rs. '+fmt(2500-sub)+' more to use FREESHIP.'};
     if(code==='PAYDAY15')return elec>0?{disc:Math.min(2000,Math.round(elec*0.15))}:{err:'PAYDAY15 works on electronics only.'};
@@ -1740,6 +1780,7 @@ window.CHOWK_API_BASE='';
     if(t.dataset.rmsaved!==undefined){saved.splice(+t.dataset.rmsaved,1);after();return}
     if(t.hasAttribute('data-apply')){
       var code=($('#cpn').value||'').trim().toUpperCase();
+      if(E_API&&/^EARN-/.test(code)){earnValidate(code);return}
       if(!code){couponMsg='Enter a coupon code.'}
       else{
         var sub=0,elec=0;cart.forEach(function(i){var p=prod(i.n);sub+=p.p*i.q;if(p.c==='Electronics')elec+=p.p*i.q});
@@ -1789,7 +1830,7 @@ window.CHOWK_API_BASE='';
       }
 
       if(!locCheckout())return;
-      placeDemoOrder(formattedPhone);
+      earnCheckout(formattedPhone);
       return;
     }
   });
@@ -2298,7 +2339,7 @@ window.CHOWK_API_BASE='';
     var custName=u?u.name:DEMO.name;
     var phone=orderPhone||(u&&u.phone)||checkoutPhoneVal||DEMO.phone;
     var n=orders.reduce(function(m,o){var k=+String(o.id).replace(/\D/g,'');return k>m?k:m},1000)+1,now=Date.now();
-    var o={id:'CHK-'+n,trk:'TRK-'+Math.floor(Math.random()*16777215).toString(16).toUpperCase().padStart(6,'0'),cust:custName,phone:phone,addr:locOrderAddr(),city:locOrderCity(),geo:locOrderGeo(),items:cart.map(function(i){return{n:i.n,s:i.s,c:i.c,o:i.o,q:i.q,id:i.id,pr:i.pr}}),type:'standard',placed:now,eta:ymd(now+etaDays()[1]*DAY),courier:'',trackingNo:'',notes:'',done:{placed:now},delays:[],failed:[],hist:[]};
+    var o={id:'CHK-'+n,trk:'TRK-'+Math.floor(Math.random()*16777215).toString(16).toUpperCase().padStart(6,'0'),cust:custName,uid:u?u.id:null,phone:phone,addr:locOrderAddr(),city:locOrderCity(),geo:locOrderGeo(),items:cart.map(function(i){return{n:i.n,s:i.s,c:i.c,o:i.o,q:i.q,id:i.id,pr:i.pr}}),type:'standard',placed:now,eta:ymd(now+etaDays()[1]*DAY),courier:'',trackingNo:'',notes:'',done:{placed:now},delays:[],failed:[],hist:[]};
     addHist(o,'step','Completed: Order placed',now);orders.unshift(o);saveOrders();
     cart=[];coupon=null;couponMsg=null;seeded=false;persist();badge();checkoutPhoneVal='';checkoutPhoneErr='';toast('Demo order '+o.id+' placed.');goTo('#order-'+o.id)}
   window.addEventListener('storage',function(e){if(e.key!==OKEY)return;loadOrders();if(!$('#ordersView').hidden)route();else if(!$('#adminView').hidden){admList();admPanel()}});
@@ -2682,7 +2723,7 @@ window.CHOWK_API_BASE='';
       '<div class="accgrid">'+
       '<a class="acard" href="#account/profile">'+accIcon('user')+'<h2>My Profile</h2><p>'+esc(u.name)+'<br>'+esc(u.email||u.login)+(u.phone?'<br>'+esc(u.phone):'')+'</p><span class="go">View profile &rsaquo;</span></a>'+
       '<a class="acard" href="#account/family">'+accIcon('users')+'<h2>My Family</h2><span class="bignum" id="famNum">'+n+'</span><p>'+(n===1?'Family Member':'Family Members')+'</p><span class="go">View family list &rsaquo;</span></a>'+
-      '<a class="acard fmcard" href="#account/family" aria-label="Family Members Registered Through Your Referral Link: '+n+'. Open My Family Members">'+accIcon('users')+'<span class="fmt"><h2>Family Members Registered Through Your Referral Link</h2><p>See every member who joined using your link, with their Member ID, registration date and status.</p></span><span class="bignum">'+n+'</span><span class="go">Open My Family Members &rsaquo;</span></a>'+
+      earnCardHtml()+earnLastHtml()+earnHistHtml()+
       '<section class="acard refc" data-ref-card aria-label="My Referral Link">'+accIcon('link')+'<h2>My Referral Link</h2><p>Share this link. Anyone who creates an account through it joins your family.</p>'+refBox(u,false)+'<span class="go">More sharing options &rsaquo;</span></section>'+
       '<a class="acard" href="#orders">'+accIcon('truck')+'<h2>My Orders</h2><p>Track your orders and delivery progress.</p><span class="go">Track orders &rsaquo;</span></a>'+
       '<a class="acard" href="#pdf-downloads">'+accIcon('pdf')+'<h2>PDF Downloads</h2><p>Browse and download product PDFs by category.</p><span class="go">Open library &rsaquo;</span></a>'+
@@ -2695,6 +2736,7 @@ window.CHOWK_API_BASE='';
     if(!keep){fam.q='';fam.page=1}fam.last=sub;
     hideAll();$('#accountView').hidden=false;
     renderAccount(sub);
+    if(!sub)earnLoad();
     document.title=({profile:'My Profile',family:'My Family Members',referral:'My Referral Link'}[sub]||'My Account')+' | Chowk';
     toTop();
   }
@@ -2702,6 +2744,9 @@ window.CHOWK_API_BASE='';
     var oa=e.target.closest('[data-open-auth]');if(oa){openAuth(oa.dataset.openAuth);return}
     var u=curUser();if(!u)return;
     if(e.target.closest('[data-logout]')){logout();return}
+    if(e.target.closest('[data-gen-coupon]')){earnGenerate();return}
+    if(e.target.closest('[data-reset-earn]')){earnResetTest();return}
+    var cc=e.target.closest('[data-copy-coupon]');if(cc){copyText(cc.dataset.copyCoupon,'Coupon code copied');return}
     if(e.target.closest('[data-copy-ref]')){copyText(refLink(u),'Referral link copied');return}
     if(e.target.closest('[data-share-ref]')){shareLink(u);return}
     var rc=e.target.closest('[data-ref-card]');
@@ -3705,6 +3750,175 @@ window.CHOWK_API_BASE='';
     if(!a||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey)return;
     e.preventDefault();goTo('#pdf-downloads');
   });
+
+  /* ===== You Earn: affiliate earnings -> coupons =====
+     BACKEND MODE (window.CHOWK_API_BASE set): every number and coupon comes from the server (see server/affiliate-coupons.js).
+       GET /api/affiliate/earnings, GET+POST /api/affiliate/coupons (Idempotency-Key header), POST /api/coupons/validate|redeem.
+       Sign-in is sent as "Authorization: Bearer <window.CHOWK_AUTH_TOKEN or localStorage 'chowk-token-v1'>" and/or cookies.
+     LOCAL MODE (no API base): same screens, computed in this browser so the flow can be tried without a server.
+       Earnings = 8% of delivered orders placed by the customer's direct family members. */
+  /* TEMPORARY TEST MODE: while no API is configured, every customer sees a dummy PKR 1,000 balance instead of real earnings.
+     Set window.CHOWK_EARN_TEST=false (before this script) or delete these three lines' effect by setting E_TEST to false to go back to real data. */
+  var E_TEST=!String(window.CHOWK_API_BASE||'')&&window.CHOWK_EARN_TEST!==false,E_TEST_AMT=1000;
+  var EKEY='chowk-earn-v1',E_RATE=0.08,E_TTL=90*86400000,E_API=String(window.CHOWK_API_BASE||'').replace(/\/+$/,'');
+  var earnSt={loading:false,ready:false,bal:0,total:0,coupons:[],err:'',busy:false,last:null,key:'',uid:''},earnCache={},earnPlacing=false;
+  function fmtPKR(n){return 'PKR '+fmt(Math.max(0,Math.round(+n||0)))}
+  function eTime(v){return typeof v==='number'?v:(Date.parse(v)||0)}
+  function eNorm(c){return{code:String(c.code),value:+c.value||0,created:eTime(c.created!=null?c.created:c.createdAt),expires:eTime(c.expires!=null?c.expires:c.expiresAt),status:String(c.status||'active').toLowerCase(),test:!!c.test}}
+  function eStatus(c){return c.status==='active'&&c.expires&&c.expires<=Date.now()?'expired':c.status}
+  function eStore(){var r=null;try{r=JSON.parse(localStorage.getItem(EKEY))}catch(x){}return r&&Array.isArray(r.coupons)?r:{coupons:[]}}
+  function eSave(s){try{localStorage.setItem(EKEY,JSON.stringify(s));return true}catch(x){return false}}
+  function eRnd(n){var a=new Uint8Array(n),s='',ch='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';crypto.getRandomValues(a);for(var i=0;i<n;i++)s+=ch.charAt(a[i]%32);return s}
+  function eEarned(u){
+    loadUsers();loadOrders();
+    var ids={};familyOf(u).forEach(function(x){ids[x.id]=1});
+    var t=0;
+    orders.forEach(function(o){
+      if(!o.uid||!ids[o.uid]||!o.done||!o.done.delivered)return;
+      var s=0;(o.items||[]).forEach(function(i){s+=(+i.pr||0)*(+i.q||0)});
+      t+=Math.floor(s*E_RATE);
+    });
+    return t;
+  }
+  function eLocalSnap(u){
+    var mine=eStore().coupons.filter(function(c){return c.uid===u.id}),spent=0,total=E_TEST?E_TEST_AMT:eEarned(u);
+    mine.forEach(function(c){if(!!c.test===E_TEST)spent+=c.value});
+    return{bal:Math.max(0,total-spent),total:total,coupons:mine.map(eNorm).sort(function(a,b){return b.created-a.created})};
+  }
+  /* the coupon is created and the balance drops in one synchronous write: it is never one without the other */
+  function eLocalGen(u){
+    var s=eStore(),spent=0;
+    s.coupons.forEach(function(c){if(c.uid===u.id&&!!c.test===E_TEST)spent+=c.value});
+    var bal=(E_TEST?E_TEST_AMT:eEarned(u))-spent;
+    if(bal<=0)return{ok:false,message:'You have no available earnings to redeem.'};
+    var code,n=0;
+    do{code='EARN-'+eRnd(6);n++}while(n<20&&s.coupons.some(function(c){return c.code===code}));
+    var now=Date.now(),c={code:code,uid:u.id,value:bal,created:now,expires:now+E_TTL,status:'active',test:E_TEST};
+    s.coupons.push(c);
+    if(!eSave(s))return{ok:false,message:'Could not save the coupon, so your earnings were not deducted. Please try again.'};
+    return{ok:true,coupon:c};
+  }
+  function eHeaders(){
+    var h={'Accept':'application/json','Content-Type':'application/json'},t=window.CHOWK_AUTH_TOKEN;
+    try{t=t||localStorage.getItem('chowk-token-v1')}catch(x){}
+    if(t)h.Authorization='Bearer '+t;return h;
+  }
+  function eApi(method,path,body,extra){
+    var h=eHeaders();if(extra)for(var k in extra)h[k]=extra[k];
+    return fetch(E_API+path,{method:method,headers:h,body:body?JSON.stringify(body):undefined,credentials:'include'}).then(function(r){
+      return r.json().catch(function(){return{}}).then(function(j){j.status=r.status;if(!r.ok)j.ok=false;else if(j.ok===undefined)j.ok=true;return j});
+    },function(){return{ok:false,reason:'network',message:'We could not reach the server. Check your connection and try again. Nothing was deducted twice.'}});
+  }
+  function earnLoad(){
+    var u=curUser();if(!u)return;
+    if(earnSt.uid!==u.id){earnSt.uid=u.id;earnSt.last=null;earnSt.key='';earnSt.err='';earnSt.ready=false}
+    if(!E_API){var s=eLocalSnap(u);earnSt.bal=s.bal;earnSt.total=s.total;earnSt.coupons=s.coupons;earnSt.ready=true;earnSt.loading=false;earnPaint();return}
+    earnSt.loading=true;earnPaint();
+    Promise.all([eApi('GET','/api/affiliate/earnings'),eApi('GET','/api/affiliate/coupons')]).then(function(r){
+      earnSt.loading=false;
+      if(!r[0].ok||!r[1].ok){earnSt.err=r[0].message||r[1].message||'Could not load your earnings.';earnPaint();return}
+      earnSt.bal=+r[0].balance||0;earnSt.total=+r[0].totalEarned||0;
+      earnSt.coupons=(r[1].items||[]).map(eNorm);earnSt.ready=true;earnPaint();
+    });
+  }
+  function earnGenerate(){
+    var u=curUser();if(!u||earnSt.busy||(earnSt.ready&&earnSt.bal<=0))return;
+    earnSt.busy=true;earnSt.err='';earnPaint();
+    var p;
+    if(!E_API)p=Promise.resolve(eLocalGen(u));
+    else{if(!earnSt.key)earnSt.key=newToken();p=eApi('POST','/api/affiliate/coupons',{},{'Idempotency-Key':earnSt.key})}
+    p.then(function(r){
+      earnSt.busy=false;
+      if(r.ok&&r.coupon){earnSt.key='';earnSt.last=eNorm(r.coupon);toast('Coupon '+earnSt.last.code+' generated.')}
+      else{earnSt.err=r.message||'The coupon could not be generated. Your earnings were not deducted.';if(r.reason!=='network')earnSt.key=''}
+      earnLoad();
+    });
+  }
+  function earnResetTest(){
+    var u=curUser();if(!u||!E_TEST||earnSt.busy)return;
+    var s=eStore();s.coupons=s.coupons.filter(function(c){return !(c.uid===u.id&&c.test)});eSave(s);
+    earnSt.last=null;earnSt.err='';earnLoad();toast('Test balance reset to PKR '+fmt(E_TEST_AMT)+'.');
+  }
+  function eLookup(code){
+    var u=curUser();if(!u)return null;
+    if(E_API)return earnCache[code]||null;
+    var c=eStore().coupons.filter(function(x){return x.code===code&&x.uid===u.id})[0];
+    return c?eNorm(c):null;
+  }
+  function earnCouponEffect(code,sub){
+    if(!curUser())return{err:'Log in to use your earnings coupon.'};
+    var c=eLookup(code);
+    if(!c)return{err:'This code is not valid.'};
+    var st=eStatus(c);
+    if(st==='used')return{err:'This coupon has already been used.'};
+    if(st==='expired')return{err:'This coupon has expired.'};
+    if(st==='cancelled')return{err:'This coupon is no longer valid.'};
+    return{disc:Math.min(c.value,sub)};
+  }
+  function earnValidate(code){
+    eApi('POST','/api/coupons/validate',{code:code,subtotal:calc().sub}).then(function(r){
+      if(r.ok){earnCache[code]={code:code,value:+r.value||0,status:'active',expires:Date.now()+86400000};coupon=code;couponMsg=null}
+      else couponMsg=r.message||'This code is not valid.';
+      after();
+    });
+  }
+  function earnRedeem(code){
+    if(E_API)return eApi('POST','/api/coupons/redeem',{code:code,orderRef:'checkout'});
+    var u=curUser(),s=eStore(),c=s.coupons.filter(function(x){return x.code===code&&(!u||x.uid===u.id)})[0];
+    if(!c)return Promise.resolve({ok:false,message:'This code is not valid.'});
+    var st=eStatus(eNorm(c));
+    if(st!=='active')return Promise.resolve({ok:false,message:st==='used'?'This coupon has already been used.':st==='expired'?'This coupon has expired.':'This coupon is no longer valid.'});
+    c.status='used';c.usedAt=Date.now();eSave(s);
+    return Promise.resolve({ok:true});
+  }
+  /* a coupon is marked used before the order is placed, so it can never be spent twice */
+  function earnCheckout(phone){
+    if(earnPlacing)return;
+    if(!coupon||!/^EARN-/.test(coupon)||calc().err){placeDemoOrder(phone);return}
+    earnPlacing=true;
+    earnRedeem(coupon).then(function(r){
+      earnPlacing=false;
+      if(!r.ok){couponMsg=r.message||'This coupon could not be applied.';coupon=null;persist();renderCart();toast(couponMsg);return}
+      placeDemoOrder(phone);
+    });
+  }
+  function earnCardInner(){
+    var s=earnSt,wait=!s.ready&&s.loading,can=s.ready&&s.bal>0&&!s.busy;
+    return'<div class="earn-top"><span class="earn-coin">'+ic('wallet')+'</span><h2>You Earn</h2>'+(E_TEST?'<span class="earn-test">Test data</span>':'')+'</div>'+
+      '<div class="earn-row"><div><small>Available earnings</small><span class="earn-amt" aria-live="polite">'+(wait?'…':fmtPKR(s.bal))+'</span></div>'+
+      '<button class="btn solid" type="button" data-gen-coupon'+(can?'':' disabled')+(s.busy?' aria-busy="true"':'')+'>'+(s.busy?'Generating…':'Generate Coupon')+'</button></div>'+
+      (s.err?'<p class="ferr" role="alert">'+esc(s.err)+'</p>':'')+
+      (E_TEST?'<p class="earn-meta"><b>Test mode:</b> this PKR '+fmt(E_TEST_AMT)+' is a dummy balance, not real affiliate earnings. Test coupons are marked “TEST”. <button class="lk" type="button" data-reset-earn>Reset test balance</button></p>':'')+
+      '<p class="earn-meta">'+(s.ready&&!E_TEST?(s.bal>0?'Turn your earnings into a coupon you can use at checkout. ':'Nothing to redeem yet. You earn commission when a family member’s order is delivered. ')+'Total earned: '+fmtPKR(s.total)+'.':(s.ready?'':'Loading your earnings…'))+'</p>';
+  }
+  function earnCardHtml(){return'<section class="acard earnc" id="earnCard" aria-label="You Earn">'+earnCardInner()+'</section>'}
+  function earnLastInner(){
+    var c=earnSt.last;if(!c)return'';
+    return'<div class="earn-ok">'+ic('check')+'Coupon generated successfully'+(c.test?' <span class="earn-test">Test coupon</span>':'')+'</div>'+
+      '<div class="earn-code"><code>'+esc(c.code)+'</code><span class="ev">Coupon value <b>'+fmtPKR(c.value)+'</b></span><button class="btn solid" type="button" data-copy-coupon="'+esc(c.code)+'">'+ic('copy')+'Copy Coupon Code</button></div>'+
+      '<p class="earn-note">Enter this code in the coupon box at checkout. It can be used once and is valid until '+fdate(c.expires)+'. Your available earnings have been updated.</p>';
+  }
+  function earnLastHtml(){return'<section class="accsec earnbox" id="earnLast" role="status" aria-live="polite"'+(earnSt.last?'':' hidden')+'>'+earnLastInner()+'</section>'}
+  var E_ST={active:['Active','ok'],used:['Used','off'],expired:['Expired','warn'],cancelled:['Cancelled','bad']};
+  function earnHistInner(){
+    var l=earnSt.coupons;
+    var h='<h2>My Generated Coupons</h2>';
+    if(!l.length)return h+'<p class="muted">'+(earnSt.ready?'No coupons yet. Generate one when you have earnings and it will be kept here.':'Loading…')+'</p>';
+    return h+'<table class="ftable"><thead><tr><th>Coupon code</th><th>Value</th><th>Generated</th><th>Status</th><th><span class="sr">Copy</span></th></tr></thead><tbody>'+
+      l.map(function(c){
+        var st=E_ST[eStatus(c)]||[eStatus(c),'off'];
+        return'<tr><td data-l="Coupon code"><code>'+esc(c.code)+'</code>'+(c.test?' <span class="earn-test">TEST</span>':'')+'</td><td data-l="Value">'+fmtPKR(c.value)+'</td><td data-l="Generated">'+fdate(c.created)+'</td><td data-l="Status"><span class="fm-st '+st[1]+'">'+st[0]+'</span></td><td data-l=""><button class="btn" type="button" data-copy-coupon="'+esc(c.code)+'" aria-label="Copy coupon code '+esc(c.code)+'">'+ic('copy')+'Copy Coupon Code</button></td></tr>';
+      }).join('')+'</tbody></table>';
+  }
+  function earnHistHtml(){return'<section class="accsec earnhist" id="earnHist" aria-label="My Generated Coupons">'+earnHistInner()+'</section>'}
+  function earnPaint(){
+    var a=$('#earnCard');if(!a)return;
+    var f=document.activeElement&&document.activeElement.hasAttribute&&document.activeElement.hasAttribute('data-gen-coupon');
+    a.innerHTML=earnCardInner();
+    var l=$('#earnLast');l.innerHTML=earnLastInner();l.hidden=!earnSt.last;
+    $('#earnHist').innerHTML=earnHistInner();
+    if(f){var b=$('#earnCard [data-gen-coupon]');if(b&&!b.disabled)b.focus()}
+  }
 
   window.addEventListener('hashchange',route);
   captureRef();syncAuthUi();
