@@ -1022,6 +1022,12 @@ a.chip{display:inline-flex;align-items:center}
   .accgrid>.earnbox{order:3}
   .accgrid>.earnhist{order:4}
 }
+/* Mobile product details page: hide the site header (logo, track orders, cart, location, login/sign up, search) so the product shows near the top.
+   body.on-pdp is toggled by script only while #productView is visible, so desktop and every other page are untouched. */
+@media(max-width:759px){
+  body.on-pdp header.top{display:none}
+  body.on-pdp .pdp{padding-top:10px}
+}
 </style>
 </head>
 <body>
@@ -3919,6 +3925,12 @@ window.CHOWK_API_BASE='';
     $('#earnHist').innerHTML=earnHistInner();
     if(f){var b=$('#earnCard [data-gen-coupon]');if(b&&!b.disabled)b.focus()}
   }
+
+  /* Flag the body while the product details view is open (drives the mobile-only header hiding in CSS) */
+  var pvEl=$('#productView');
+  function syncPdpClass(){document.body.classList.toggle('on-pdp',!pvEl.hidden)}
+  try{new MutationObserver(syncPdpClass).observe(pvEl,{attributes:true,attributeFilter:['hidden']})}catch(x){}
+  syncPdpClass();
 
   window.addEventListener('hashchange',route);
   captureRef();syncAuthUi();
