@@ -90,32 +90,73 @@ nav.main .catbtn svg{width:18px;height:18px}
 @media(min-width:960px){nav.main .catbtn{display:none}}
 
 /* hero: sidebar + slider */
-.hero{display:grid;gap:16px;padding-block:16px}
-.sidebar{display:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:8px;align-self:start}
+.hero{display:grid;gap:14px;padding-block:14px}
+.hero-main{display:grid;gap:14px;min-width:0;align-content:start}
+.sidebar{display:none;position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.sbin{position:absolute;inset:0;overflow-y:auto;padding:8px;scrollbar-width:thin}
 .sidebar h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:8px 10px}
-.sidebar a{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 10px;border-radius:8px;font-weight:500}
+.sidebar a{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;font-weight:500}
 .sidebar a:hover{background:var(--soft);color:var(--brand)}
 .sidebar a::after{content:"›";color:var(--muted);font-size:18px;line-height:1}
-@media(min-width:960px){.hero{grid-template-columns:260px minmax(0,1fr)}.sidebar{display:block}}
+@media(min-width:960px){.hero{grid-template-columns:240px minmax(0,1fr);align-items:stretch}.sidebar{display:block}}
 
-.slider{position:relative;min-width:0;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
-.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.slider{position:relative;min-width:0;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);background:#10231F}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth}
 .track::-webkit-scrollbar{display:none}
-.slide{flex:0 0 100%;scroll-snap-align:start;min-height:230px;padding:24px 22px 46px;color:#fff;display:flex;align-items:center;position:relative;overflow:hidden}
-.slide .txt{position:relative;z-index:1;max-width:30ch;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
-.slide small{font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:12px;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:99px}
-.slide h2{font-size:clamp(24px,5.4vw,40px);line-height:1.05;font-weight:800}
-.slide .cta{background:#fff;color:#10231F;border-radius:9px;padding:10px 16px;font-weight:700}
-.slide .art{position:absolute;right:-10px;bottom:-14px;width:min(46%,260px);aspect-ratio:1;opacity:.22;color:#fff}
-.s1{background:linear-gradient(120deg,#0B6B5E,#13A38C)}
-.s2{background:linear-gradient(120deg,#8A2B1D,#E0643A)}
-.s3{background:linear-gradient(120deg,#1B3A6B,#3B73C4)}
-.dots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:8px}
-.dots button{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:rgba(255,255,255,.5)}
-.dots button[aria-current="true"]{width:26px;border-radius:6px;background:#fff}
-.arrow{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.9);color:#10231F;font-size:20px;display:none}
+.slide{flex:0 0 100%;scroll-snap-align:start;min-height:210px;padding:22px 20px 40px;color:#fff;display:flex;align-items:center;position:relative;overflow:hidden}
+.slide .txt{position:relative;z-index:2;max-width:min(34ch,62%);display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.slide small{font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:11px;background:rgba(255,255,255,.2);padding:4px 10px;border-radius:99px}
+.slide h2{font-size:clamp(20px,4.4vw,34px);line-height:1.08;font-weight:800;text-shadow:0 1px 12px rgba(0,0,0,.18)}
+.slide p{font-size:14px;line-height:1.4;opacity:.92;max-width:36ch}
+.slide .cta{background:#fff;color:#10231F;border-radius:9px;padding:9px 18px;font-weight:700;font-size:14px;margin-top:4px;transition:transform .2s,box-shadow .2s}
+.slide .cta:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.s1{background:linear-gradient(110deg,#0A5C51 0%,#0F8F7B 55%,#13A38C 100%)}
+.s2{background:linear-gradient(110deg,#7A2417 0%,#C4502A 55%,#E0643A 100%)}
+.s3{background:linear-gradient(110deg,#15305A 0%,#2C5DA8 55%,#3B73C4 100%)}
+/* art pane: layered product tiles on the right of each slide (swap for photos by adding an <img class="photo"> inside .slide) */
+.slide .photo{position:absolute;right:0;top:0;bottom:0;width:48%;object-fit:cover;z-index:1;-webkit-mask-image:linear-gradient(90deg,transparent,#000 35%);mask-image:linear-gradient(90deg,transparent,#000 35%)}
+.pic{position:absolute;right:4%;top:50%;transform:translateY(-50%);width:min(40%,360px);aspect-ratio:1.5/1;z-index:1;pointer-events:none}
+.pic i{position:absolute;display:grid;place-items:center;border-radius:20px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(2px);box-shadow:0 12px 28px rgba(0,0,0,.18);color:#fff}
+.pic i svg{width:58%;height:58%}
+.pic .a{width:46%;aspect-ratio:1;left:4%;top:14%;transform:rotate(-6deg)}
+.pic .b{width:58%;aspect-ratio:1;right:0;top:6%;background:rgba(255,255,255,.24);transform:rotate(4deg)}
+.pic .c{width:34%;aspect-ratio:1;left:30%;bottom:0;transform:rotate(-3deg);background:rgba(255,255,255,.3)}
+.pic em{position:absolute;right:6%;bottom:6%;background:var(--gold);color:var(--gold-ink);font-style:normal;font-weight:800;font-size:13px;padding:5px 11px;border-radius:99px;box-shadow:0 6px 14px rgba(0,0,0,.2)}
+.dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:8px;z-index:3}
+.dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:rgba(255,255,255,.5);transition:width .25s,background .25s}
+.dots button[aria-current="true"]{width:24px;border-radius:6px;background:#fff}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#10231F;font-size:20px;display:none;z-index:3;box-shadow:0 4px 12px rgba(0,0,0,.2);transition:background .2s,transform .2s}
+.arrow:hover{background:#fff;transform:translateY(-50%) scale(1.08)}
 .arrow.l{left:12px}.arrow.r{right:12px}
-@media(min-width:760px){.slide{min-height:330px;padding:36px 56px 52px}.arrow{display:grid;place-items:center}.slide .art{opacity:.3}}
+@media(min-width:760px){.slide{aspect-ratio:2.7/1;min-height:0;padding:24px 56px 40px}.arrow{display:grid;place-items:center}}
+@media(min-width:960px){.slide{aspect-ratio:3/1}}
+@media(min-width:1180px){.slide{aspect-ratio:3.3/1}}
+@media(max-width:559px){.slide .txt{max-width:70%}.slide p{display:none}.pic{width:38%;right:2%;opacity:.9}.slide{min-height:200px}}
+
+/* promo banners under the slider */
+.promos{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+@media(min-width:480px){.promos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.promo{position:relative;display:flex;align-items:center;min-height:140px;padding:18px 20px;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s}
+.promo:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(16,35,31,.16)}
+.promo .t{position:relative;z-index:2;display:flex;flex-direction:column;gap:5px;align-items:flex-start;max-width:58%}
+.promo small{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;opacity:.8}
+.promo h3{font-size:clamp(18px,2.2vw,24px);font-weight:800;line-height:1.1}
+.promo p{font-size:13px;line-height:1.35;opacity:.9}
+.promo .pb{margin-top:6px;border-radius:8px;padding:7px 14px;font-weight:700;font-size:13px;transition:filter .2s,transform .2s}
+.promo:hover .pb{filter:brightness(1.08)}
+.promo .pi{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:42%;max-width:170px;aspect-ratio:1;display:grid;place-items:center;z-index:1;transition:transform .35s}
+.promo:hover .pi{transform:translateY(-50%) scale(1.06)}
+.promo .pi::before{content:"";position:absolute;inset:8%;border-radius:50%;background:var(--ring)}
+.promo .pi svg{position:relative;width:62%;height:62%}
+.promo .pi svg+svg{position:absolute;width:34%;height:34%;right:2%;bottom:6%;background:var(--chip);border-radius:12px;padding:6px;box-sizing:content-box;color:var(--chipc)}
+.pm1{background:linear-gradient(120deg,#FBF1DC,#F6DDB0);color:#3A2C00;--ring:rgba(224,100,58,.18)}
+.pm1 .pi{color:#B5441E;--chip:#fff;--chipc:#B5441E}
+.pm1 .pb{background:#3A2C00;color:#fff}
+.pm2{background:linear-gradient(120deg,#12273F,#1E4A6E);color:#fff;--ring:rgba(255,200,61,.18)}
+.pm2 .pi{color:var(--gold);--chip:rgba(255,255,255,.14);--chipc:#fff}
+.pm2 .pb{background:var(--gold);color:var(--gold-ink)}
+@media(max-width:759px){.promo{min-height:128px;padding:16px}}
+@media(prefers-reduced-motion:reduce){.promo,.promo .pi,.slide .cta,.arrow{transition:none}.track{scroll-behavior:auto}}
 
 /* sections */
 section.blk{padding-block:18px}
@@ -1022,12 +1063,73 @@ a.chip{display:inline-flex;align-items:center}
   .accgrid>.earnbox{order:3}
   .accgrid>.earnhist{order:4}
 }
-/* Mobile product details page: hide the site header (logo, track orders, cart, location, login/sign up, search) so the product shows near the top.
-   body.on-pdp is toggled by script only while #productView is visible, so desktop and every other page are untouched. */
-@media(max-width:759px){
-  body.on-pdp header.top{display:none}
-  body.on-pdp .pdp{padding-top:10px}
-}
+
+/* ===== Dummy product notifications (bell + panel) ===== */
+.nf-wrap{position:relative}
+.nfbell{position:relative;display:grid;place-items:center;width:38px;height:38px;padding:0;border:0;border-radius:9px;background:var(--soft);color:var(--brand)}
+.nfbell:hover,.nfbell[aria-expanded="true"]{background:var(--brand);color:var(--brand-ink)}
+.nfbell svg{width:22px;height:22px}
+.nfbell b{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--sale);color:#fff;font-size:11px;display:grid;place-items:center;box-shadow:0 0 0 2px var(--surface)}
+.nf-sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.nf-panel{position:fixed;top:var(--nf-top,64px);left:8px;right:8px;z-index:70;display:flex;flex-direction:column;max-height:min(78vh,640px);background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 48px rgba(16,35,31,.2),0 2px 6px rgba(16,35,31,.1);overflow:hidden;transform-origin:top right;animation:nfIn .18s ease-out}
+.nf-panel:focus{outline:none}
+@media(min-width:640px){.nf-panel{position:absolute;top:calc(100% + 10px);left:auto;right:0;width:400px}}
+.nf-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 12px 10px 16px;border-bottom:1px solid var(--line)}
+.nf-head h2{font-size:18px;display:flex;align-items:center;gap:8px}
+.nf-pill{background:var(--brand);color:var(--brand-ink);font-family:var(--f-body);font-size:12px;font-weight:700;padding:2px 8px;border-radius:99px}
+.nf-link{border:0;background:none;color:var(--brand);font-weight:700;font-size:13px;padding:7px 9px;border-radius:8px}
+.nf-link:hover:not(:disabled){background:var(--soft)}
+.nf-link:disabled{color:var(--muted);opacity:.65;cursor:default}
+.nf-scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+.nf-list{list-style:none;margin:0;padding:0}
+.nf-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border-bottom:1px solid var(--line)}
+.nf-row:last-child{border-bottom:0}
+.nf-row.unread{background:color-mix(in srgb,var(--brand) 7%,var(--surface));box-shadow:inset 3px 0 0 var(--brand)}
+.nf-item{display:grid;grid-template-columns:48px minmax(0,1fr);gap:12px;min-width:0;padding:12px 6px 12px 16px}
+.nf-item:hover{background:var(--soft)}
+.nf-item:focus-visible{outline-offset:-3px}
+.nf-thumb{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:color-mix(in srgb,hsl(var(--h) 75% 55%) var(--tile-mix),var(--surface))}
+.nf-thumb .ico{width:56%;height:56%;color:hsl(var(--h) 50% var(--icon-l))}
+.nf-body{display:flex;flex-direction:column;gap:2px;min-width:0}
+.nf-top{display:flex;align-items:center;gap:6px;min-width:0}
+.nf-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:600}
+.nf-row.unread .nf-name{font-weight:800}
+.nf-new{flex:none;background:var(--gold);color:var(--gold-ink);font-size:11px;font-weight:800;line-height:1.5;padding:0 7px;border-radius:99px}
+.nf-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--muted);font-size:13px;line-height:1.35}
+.nf-price{display:flex;flex-wrap:wrap;align-items:center;gap:3px 8px;font-size:13px;margin-top:2px}
+.nf-price strong{font-weight:800}
+.nf-price s{color:var(--muted);font-size:12px}
+.nf-off{background:color-mix(in srgb,var(--sale) 88%,#000);color:#fff;font-size:11px;font-weight:800;padding:2px 7px;border-radius:6px}
+.nf-time{color:var(--muted);font-size:12px}
+.nf-mark{display:grid;place-items:center;width:34px;height:34px;margin-right:12px;padding:7px;border:1.5px solid var(--line);border-radius:50%;background:var(--surface);color:var(--brand)}
+.nf-mark:hover{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+/* phones: the header row is already full, so the bell docks in the location row (moved by script) */
+@media(max-width:559px){.head>.nf-wrap{grid-area:loc;justify-self:end;align-self:center}.head.nf-dock .locbtn{margin-right:48px}}
+@keyframes nfIn{from{opacity:0;transform:translateY(-6px) scale(.97)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.nf-panel{animation:none}}
+
+/* ===== Floating product promo popup (dummy data) ===== */
+.fp{position:fixed;right:20px;bottom:calc(20px + var(--fp-lift,0px) + env(safe-area-inset-bottom,0px));z-index:50;width:min(340px,calc(100vw - 24px));background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 14px 40px rgba(16,35,31,.18),0 2px 6px rgba(16,35,31,.08);opacity:0;transform:translateX(calc(100% + 40px));transition:opacity .6s ease-in-out,transform .6s ease-in-out;will-change:opacity,transform}
+.fp.show{opacity:1;transform:translateX(0)}
+.fp-card{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:center;padding:14px 38px 14px 14px}
+.fp-thumb{display:grid;place-items:center;width:64px;height:64px;border-radius:14px;background:color-mix(in srgb,hsl(var(--h) 75% 55%) var(--tile-mix),var(--surface))}
+.fp-thumb .ico{width:56%;height:56%;color:hsl(var(--h) 50% var(--icon-l))}
+.fp-thumb:hover{filter:brightness(.97)}
+.fp-body{display:flex;flex-direction:column;gap:2px;min-width:0}
+.fp-msg{color:var(--muted);font-size:12.5px}
+.fp-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--f-display);font-size:16px;font-weight:700;color:var(--ink)}
+.fp-name:hover{color:var(--brand)}
+.fp-sub{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;color:var(--muted);font-size:12.5px;line-height:1.35}
+.fp-row{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin-top:4px;font-size:13px}
+.fp-row strong{font-weight:800}
+.fp-row s{color:var(--muted);font-size:12px}
+.fp-off{background:color-mix(in srgb,var(--sale) 88%,#000);color:#fff;font-size:11px;font-weight:800;padding:2px 7px;border-radius:6px}
+.fp-cta{margin-left:auto;background:var(--brand);color:var(--brand-ink);font-weight:700;font-size:12.5px;padding:6px 12px;border-radius:99px}
+.fp-cta:hover{filter:brightness(1.08)}
+.fp-x{position:absolute;top:6px;right:6px;display:grid;place-items:center;width:30px;height:30px;border:0;border-radius:50%;background:none;color:var(--muted);font-size:20px;line-height:1}
+.fp-x:hover{background:var(--soft);color:var(--ink)}
+@media(max-width:559px){.fp{right:12px;bottom:calc(12px + var(--fp-lift,0px) + env(safe-area-inset-bottom,0px));width:min(320px,calc(100vw - 24px))}.fp-card{grid-template-columns:52px minmax(0,1fr);gap:12px;padding:10px 34px 10px 10px}.fp-thumb{width:52px;height:52px;border-radius:12px}.fp-name{font-size:15px}.fp-sub{display:none}}
+@media(prefers-reduced-motion:reduce){.fp{transition:opacity .01s linear;transform:none}}
 </style>
 </head>
 <body>
@@ -1068,6 +1170,7 @@ a.chip{display:inline-flex;align-items:center}
   <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
   <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 10h5l3 3v3h-8"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
   <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2 3h3l2.6 12.4a1 1 0 0 0 1 .8h9.2a1 1 0 0 0 1-.8L21 7H6"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></symbol>
@@ -1118,6 +1221,7 @@ a.chip{display:inline-flex;align-items:center}
       <button class="btn solid" type="button" data-auth="signup">Sign up</button>
       <a class="btn hide-s" id="acctBtn" href="#account" hidden></a>
       <button class="btn hide-s" type="button" id="logoutBtn" hidden>Logout</button>
+      <div class="nf-wrap" id="nfWrap"><button class="nfbell" type="button" id="nfBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="nfPanel" aria-label="Notifications"><svg class="ico" aria-hidden="true"><use href="#i-bell"/></svg><b id="nfCount" hidden>0</b></button><section class="nf-panel" id="nfPanel" role="dialog" aria-labelledby="nfTitle" tabindex="-1" hidden></section></div>
       <button class="cart" type="button" id="cartBtn" aria-label="Shopping cart"><svg class="ico"><use href="#i-cart"/></svg><span>Cart</span><b id="cartCount">0</b></button>
     </div>
   </div>
@@ -1134,19 +1238,25 @@ a.chip{display:inline-flex;align-items:center}
 <main id="home">
   <!-- 7 Categories sidebar + 8 Banner slider -->
   <div class="wrap hero">
-    <aside class="sidebar" aria-label="Categories sidebar">
+    <aside class="sidebar" aria-label="Categories sidebar"><div class="sbin">
       <h2>Shop by category</h2>
       <div id="sideCats"></div>
-    </aside>
+    </div></aside>
+    <div class="hero-main">
     <div class="slider" id="slider" aria-roledescription="carousel" aria-label="Featured offers">
       <div class="track" id="track">
-        <div class="slide s1"><div class="txt"><small>Electronics Fest</small><h2>Phones, audio and laptops up to 60% off</h2><a class="cta" href="#flash">Shop the deals</a></div><svg class="art ico"><use href="#i-phone"/></svg></div>
-        <div class="slide s2"><div class="txt"><small>Winter Edit</small><h2>Hoodies, shawls and jackets from Rs. 999</h2><a class="cta" href="#trending">See what's trending</a></div><svg class="art ico"><use href="#i-shirt"/></svg></div>
-        <div class="slide s3"><div class="txt"><small>Chowk Mall</small><h2>Official brand stores with 7-day easy returns</h2><a class="cta" href="#mall">Visit the mall</a></div><svg class="art ico"><use href="#i-bag"/></svg></div>
+        <div class="slide s1"><div class="txt"><small>Electronics Fest</small><h2>Up to 60% off on phones and audio</h2><p>Top brands, free delivery above Rs. 2,500 and easy returns.</p><a class="cta" href="#flash">Shop Now</a></div><div class="pic" aria-hidden="true"><i class="a"><svg class="ico"><use href="#i-headphones"/></svg></i><i class="b"><svg class="ico"><use href="#i-phone"/></svg></i><i class="c"><svg class="ico"><use href="#i-watch"/></svg></i><em>-60%</em></div></div>
+        <div class="slide s2"><div class="txt"><small>Winter Edit</small><h2>Hoodies, shawls and jackets from Rs. 999</h2><p>Stay warm with soft fleece and hand-woven wool.</p><a class="cta" href="#trending">Shop Now</a></div><div class="pic" aria-hidden="true"><i class="a"><svg class="ico"><use href="#i-shoe"/></svg></i><i class="b"><svg class="ico"><use href="#i-shirt"/></svg></i><i class="c"><svg class="ico"><use href="#i-bag"/></svg></i><em>From Rs. 999</em></div></div>
+        <div class="slide s3"><div class="txt"><small>Chowk Mall</small><h2>Official brand stores, 7-day easy returns</h2><p>Authorised sellers, genuine products and brand warranty.</p><a class="cta" href="#mall">Visit the Mall</a></div><div class="pic" aria-hidden="true"><i class="a"><svg class="ico"><use href="#i-lamp"/></svg></i><i class="b"><svg class="ico"><use href="#i-bag"/></svg></i><i class="c"><svg class="ico"><use href="#i-bottle"/></svg></i><em>Genuine</em></div></div>
       </div>
       <button class="arrow l" type="button" id="prev" aria-label="Previous slide">&#8249;</button>
       <button class="arrow r" type="button" id="next" aria-label="Next slide">&#8250;</button>
       <div class="dots" id="dots"></div>
+    </div>
+    <div class="promos">
+      <a class="promo pm1" href="#category-men-s-fashion"><div class="t"><small>New season</small><h3>Upgrade Your Style</h3><p>Sneakers, kurtas and hoodies for every day.</p><span class="pb">Explore Now</span></div><div class="pi" aria-hidden="true"><svg class="ico"><use href="#i-shoe"/></svg><svg class="ico"><use href="#i-shirt"/></svg></div></a>
+      <a class="promo pm2" href="#category-lighting-and-decor"><div class="t"><small>Home edit</small><h3>Light Up Your Home</h3><p>Lamps and decor from Rs. 1,299.</p><span class="pb">Shop Now</span></div><div class="pi" aria-hidden="true"><svg class="ico"><use href="#i-lamp"/></svg><svg class="ico"><use href="#i-home"/></svg></div></a>
+    </div>
     </div>
   </div>
 
@@ -1366,7 +1476,9 @@ a.chip{display:inline-flex;align-items:center}
   </div>
 </div>
 <div class="scrim center" id="oConfirm" hidden></div>
+<aside class="fp" id="fp" role="complementary" aria-label="Featured product" hidden></aside>
 <div class="toast" id="toast" role="status" hidden></div>
+<div class="nf-sr" id="nfLive" role="status" aria-live="polite"></div>
 
 <script>
 /* Set to your backend origin (e.g. 'https://api.yourshop.pk') to use the real email-based reset. Empty = browser-only demo mode. */
@@ -3926,11 +4038,133 @@ window.CHOWK_API_BASE='';
     if(f){var b=$('#earnCard [data-gen-coupon]');if(b&&!b.disabled)b.focus()}
   }
 
-  /* Flag the body while the product details view is open (drives the mobile-only header hiding in CSS) */
-  var pvEl=$('#productView');
-  function syncPdpClass(){document.body.classList.toggle('on-pdp',!pvEl.hidden)}
-  try{new MutationObserver(syncPdpClass).observe(pvEl,{attributes:true,attributeFilter:['hidden']})}catch(x){}
-  syncPdpClass();
+
+  /* ===== Dummy product notifications: frontend only. Mock data + in-memory state (resets on reload). ===== */
+  var nfNow=Date.now(),nfM=60000,nfH=3600000,nfD=86400000;
+  function nfMock(prefix,desc,ago,read){
+    var p=P.filter(function(x){return x.n.indexOf(prefix)===0})[0];
+    return {id:slugify(prefix),name:p.n.split(',')[0],desc:desc,price:p.p,orig:p.o,i:p.i,h:p.h,slug:slugOf(p),ts:nfNow-ago,read:read};
+  }
+  /* To preview a product without a discount, set orig:null on any item. */
+  var nfItems=[
+    nfMock('Wireless Earbuds Pro','30-hour battery, fast charging and clear calls.',2*nfM,false),
+    nfMock('Fleece Hoodie','Soft brushed fleece in a relaxed unisex fit.',25*nfM,false),
+    nfMock('Smart Watch Active 2','AMOLED display with heart-rate and sleep tracking.',2*nfH,false),
+    nfMock('Ceramic Desk Lamp','Touch dimmer with three warm light levels.',nfD+2*nfH,true),
+    nfMock('Vitamin C Face Serum','Brightening 30ml serum for daily use.',3*nfD,true)
+  ];
+  var nfOpen=false;
+  function nfUnread(){return nfItems.filter(function(n){return !n.read}).length}
+  function nfPct(n){return n.orig&&n.orig>n.price?Math.round((1-n.price/n.orig)*100):0}
+  function nfAgo(ts){
+    var s=Math.max(0,Math.round((Date.now()-ts)/1000));if(s<45)return 'Just now';
+    var m=Math.round(s/60);if(m<60)return m===1?'1 minute ago':m+' minutes ago';
+    var h=Math.round(m/60);if(h<24)return h===1?'1 hour ago':h+' hours ago';
+    var d=Math.round(h/24);return d===1?'Yesterday':d+' days ago';
+  }
+  function nfSay(m){var l=$('#nfLive');l.textContent='';setTimeout(function(){l.textContent=m},30)}
+  function nfBadge(){
+    var u=nfUnread(),b=$('#nfCount');b.hidden=!u;b.textContent=u>9?'9+':String(u);
+    $('#nfBtn').setAttribute('aria-label','Notifications'+(u?', '+u+' unread':''));
+  }
+  function nfRow(n){
+    var pct=nfPct(n),isNew=Date.now()-n.ts<nfD;
+    return '<li class="nf-row'+(n.read?'':' unread')+'"><a class="nf-item" href="#product-'+n.slug+'" data-open="'+n.id+'">'+
+      '<span class="nf-thumb" style="--h:'+n.h+'" aria-hidden="true">'+ic(n.i)+'</span>'+
+      '<span class="nf-body"><span class="nf-top">'+(n.read?'':'<span class="nf-sr">Unread: </span>')+'<span class="nf-name">'+esc(n.name)+'</span>'+(isNew?'<span class="nf-new">NEW</span>':'')+'</span>'+
+      '<span class="nf-desc">'+esc(n.desc)+'</span>'+
+      '<span class="nf-price"><strong>Rs. '+fmt(n.price)+'</strong>'+(pct?'<s><span class="nf-sr">Original price </span>Rs. '+fmt(n.orig)+'</s><span class="nf-off">'+pct+'% OFF</span>':'')+'</span>'+
+      '<time class="nf-time" title="'+esc(fdt(n.ts))+'">'+nfAgo(n.ts)+'</time></span></a>'+
+      (n.read?'':'<button class="nf-mark" type="button" data-read="'+n.id+'" aria-label="Mark '+esc(n.name)+' as read" title="Mark as read">'+ic('check')+'</button>')+'</li>';
+  }
+  function nfRender(){
+    var u=nfUnread();
+    $('#nfPanel').innerHTML='<div class="nf-head"><h2 id="nfTitle">Notifications'+(u?'<span class="nf-pill">'+u+' new</span>':'')+'</h2><button class="nf-link" type="button" data-readall'+(u?'':' disabled')+'>Mark all as read</button></div>'+
+      '<div class="nf-scroll"><ul class="nf-list">'+nfItems.map(nfRow).join('')+'</ul></div>';
+  }
+  function nfPlace(){$('#nfPanel').style.setProperty('--nf-top',Math.round($('#nfBtn').getBoundingClientRect().bottom+10)+'px')}
+  function nfShow(){nfOpen=true;$('#nfBtn').setAttribute('aria-expanded','true');nfPlace();nfRender();$('#nfPanel').hidden=false;$('#nfPanel').focus()}
+  function nfHide(ret){if(!nfOpen)return;nfOpen=false;$('#nfPanel').hidden=true;$('#nfBtn').setAttribute('aria-expanded','false');if(ret)$('#nfBtn').focus()}
+  function nfById(id){return nfItems.filter(function(n){return n.id===id})[0]}
+
+  $('#nfBtn').addEventListener('click',function(){nfOpen?nfHide(true):nfShow()});
+  $('#nfPanel').addEventListener('click',function(e){
+    var el=e.target.closest('[data-open]');
+    if(el){e.preventDefault();var n=nfById(el.dataset.open);n.read=true;nfBadge();nfHide(false);goTo('#product-'+n.slug);return}
+    el=e.target.closest('[data-read]');
+    if(el){var id=el.dataset.read;nfById(id).read=true;nfBadge();nfRender();nfSay('Marked as read. '+nfUnread()+' unread.');
+      var nx=$('#nfPanel [data-open="'+id+'"]');if(nx)nx.focus();return}
+    if(e.target.closest('[data-readall]')){nfItems.forEach(function(n){n.read=true});nfBadge();nfRender();nfSay('All notifications marked as read.');$('#nfPanel [data-open]').focus()}
+  });
+  /* ignore clicks whose target was removed by a re-render */
+  document.addEventListener('click',function(e){if(nfOpen&&document.contains(e.target)&&!e.target.closest('#nfWrap'))nfHide(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')nfHide(true)});
+
+  var nfMq=window.matchMedia('(max-width:559px)');
+  function nfDock(){
+    var w=$('#nfWrap'),h=$('.head');
+    if(nfMq.matches){$('#locBtn').after(w);h.classList.add('nf-dock')}
+    else{$('.actions').insertBefore(w,$('#cartBtn'));h.classList.remove('nf-dock')}
+    if(nfOpen)nfPlace();
+  }
+  if(nfMq.addEventListener)nfMq.addEventListener('change',nfDock);else nfMq.addListener(nfDock);
+  window.addEventListener('resize',function(){if(nfOpen)nfPlace()});
+  nfDock();nfBadge();
+
+
+  /* ===== Floating promo popup: frontend only. Dummy picks from the catalog, in-memory state (resets on reload). ===== */
+  var FP_ITEMS=[
+    ['Leather Handbag','You may love this product','Elegant design, perfect for every occasion.'],
+    ['Wireless Earbuds Pro','Discover our latest collection','30-hour battery and crystal-clear calls.'],
+    ['Cotton Kurta','Popular this season','Breathable two-piece set for warm days.'],
+    ['Bedside Table Lamp','You may love this product','Warm light that makes any room feel calm.'],
+    ['Smart Watch Active 2','Discover our latest collection','AMOLED display with sleep and heart-rate tracking.'],
+    ['Vitamin C Face Serum','Trending right now','Brightening 30ml serum for daily use.']
+  ].map(function(r){
+    var p=P.filter(function(x){return x.n.indexOf(r[0])===0})[0];
+    return {name:p.n.split(',')[0],msg:r[1],sub:r[2],price:p.p,orig:p.o,i:p.i,h:p.h,slug:slugOf(p)};
+  });
+  /* Popup cycle: slide in, visible 7s, slide out, hidden 15s, repeat. One timer slot (fp.timer) keeps the cycle free of duplicate timers. */
+  var FP_FIRST=3500,FP_SHOW=7000,FP_GAP=15000,FP_FADE=600;
+  var fp={idx:-1,timer:null,closed:false,paused:false};
+  function fpHtml(d){
+    var pct=d.orig>d.price?Math.round((1-d.price/d.orig)*100):0,href='#product-'+d.slug;
+    return '<div class="fp-card"><a class="fp-thumb" style="--h:'+d.h+'" href="'+href+'" data-fp aria-label="View '+esc(d.name)+'">'+ic(d.i)+'</a>'+
+      '<div class="fp-body"><span class="fp-msg">'+esc(d.msg)+'</span><a class="fp-name" href="'+href+'" data-fp>'+esc(d.name)+'</a><span class="fp-sub">'+esc(d.sub)+'</span>'+
+      '<span class="fp-row"><strong>Rs. '+fmt(d.price)+'</strong>'+(pct?'<s><span class="nf-sr">Original price </span>Rs. '+fmt(d.orig)+'</s><span class="fp-off">'+pct+'% OFF</span>':'')+'<a class="fp-cta" href="'+href+'" data-fp>Shop Now</a></span></div></div>'+
+      '<button class="fp-x" type="button" aria-label="Close promotion">&times;</button>';
+  }
+  /* keep clear of the fixed bottom bars on the product and cart pages */
+  function fpLift(){var b=document.querySelector('.pbar,.mbar');$('#fp').style.setProperty('--fp-lift',(b&&b.offsetHeight?b.offsetHeight:0)+'px')}
+  function fpPlay(){var el=$('#fp');el.classList.remove('show');void el.offsetWidth;el.classList.add('show')}
+  function fpWait(fn,ms){clearTimeout(fp.timer);fp.timer=setTimeout(fn,ms)}
+  function fpAppear(){
+    if(fp.closed)return;
+    if(document.hidden){fpWait(fpAppear,FP_GAP);return}
+    var el=$('#fp');fp.idx=(fp.idx+1)%FP_ITEMS.length;
+    el.innerHTML=fpHtml(FP_ITEMS[fp.idx]);fpLift();el.hidden=false;fpPlay();
+    fpWait(fpDisappear,FP_SHOW);
+  }
+  function fpDisappear(){
+    if(fp.closed)return;
+    if(fp.paused){fpWait(fpDisappear,500);return}
+    var el=$('#fp');el.classList.remove('show');
+    fpWait(function(){el.hidden=true;fpWait(fpAppear,FP_GAP)},FP_FADE);
+  }
+  function fpStop(){clearTimeout(fp.timer);fp.timer=null}
+  function fpClose(){fp.closed=true;fpStop();var el=$('#fp');el.classList.remove('show');setTimeout(function(){el.hidden=true},FP_FADE)}
+  $('#fp').addEventListener('click',function(e){
+    if(e.target.closest('.fp-x')){fpClose();return}
+    var a=e.target.closest('a[data-fp]');if(a){e.preventDefault();goTo(a.getAttribute('href'))}
+  });
+  $('#fp').addEventListener('mouseenter',function(){fp.paused=true});
+  $('#fp').addEventListener('mouseleave',function(){fp.paused=false});
+  $('#fp').addEventListener('focusin',function(){fp.paused=true});
+  $('#fp').addEventListener('focusout',function(){fp.paused=false});
+  window.addEventListener('hashchange',function(){setTimeout(fpLift,0)});
+  window.addEventListener('resize',fpLift);
+  window.addEventListener('pagehide',fpStop);
+  fpWait(fpAppear,FP_FIRST);
 
   window.addEventListener('hashchange',route);
   captureRef();syncAuthUi();
