@@ -1137,6 +1137,18 @@ a.chip{display:inline-flex;align-items:center}
 @media(max-width:559px){.fp{right:12px;bottom:calc(12px + var(--fp-lift,0px) + env(safe-area-inset-bottom,0px));width:min(320px,calc(100vw - 24px))}.fp-card{grid-template-columns:52px minmax(0,1fr);gap:12px;padding:10px 34px 10px 10px}.fp-thumb{width:52px;height:52px;border-radius:12px}.fp-name{font-size:15px}.fp-sub{display:none}}
 @media(prefers-reduced-motion:reduce){.fp{transition:opacity .01s linear;transform:none}}
 
+/* Mobile only (2-column card grid and shelves): larger product image, smaller text.
+   The image area grows by about what the text gives back, so the card keeps its size. Desktop and tablet are untouched. */
+@media(max-width:619px){
+  .card .media{aspect-ratio:3/2}
+  .card .media .ico{height:76%}
+  .card .badge{font-size:10.5px;padding:2px 6px}
+  .card .name{font-size:12.5px}
+  .card .price b{font-size:14px}
+  .card .price s{font-size:10.5px}
+  .card .meta{font-size:11px}
+}
+
 /* Mobile only: on the Product Details page, hide the top header (logo, orders, cart row and location, notifications, search row)
    so the product image and details get the full screen. Desktop/tablet and every other page keep the normal header. */
 @media(max-width:599px){
