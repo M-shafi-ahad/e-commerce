@@ -1136,6 +1136,17 @@ a.chip{display:inline-flex;align-items:center}
 .fp-x:hover{background:var(--soft);color:var(--ink)}
 @media(max-width:559px){.fp{right:12px;bottom:calc(12px + var(--fp-lift,0px) + env(safe-area-inset-bottom,0px));width:min(320px,calc(100vw - 24px))}.fp-card{grid-template-columns:52px minmax(0,1fr);gap:12px;padding:10px 34px 10px 10px}.fp-thumb{width:52px;height:52px;border-radius:12px}.fp-name{font-size:15px}.fp-sub{display:none}}
 @media(prefers-reduced-motion:reduce){.fp{transition:opacity .01s linear;transform:none}}
+/* Mobile overflow fix: the popup rests off-screen to the right (translateX(100% + 40px)) while it is fading in/out and for the
+   whole 15s pause between cycles. A fixed element parked beyond the right edge widens the layout/visual viewport on phones, which is
+   what let the page pan and shake sideways (body overflow-x:hidden does not clip fixed elements). On phones it now rests below the
+   screen instead and is visibility:hidden whenever it is not showing, so nothing sits outside the viewport. Desktop is unchanged. */
+@media(max-width:759px){
+  .fp{transform:translateY(calc(100% + 40px))}
+  .fp.show{transform:translateY(0)}
+  .fp:not(.show){visibility:hidden;pointer-events:none;transition:opacity .6s ease-in-out,transform .6s ease-in-out,visibility 0s linear .6s}
+}
+@media(max-width:759px) and (prefers-reduced-motion:reduce){.fp,.fp.show{transform:none}.fp:not(.show){transition:opacity .01s linear}}
+html{overscroll-behavior-x:none}
 
 /* Mobile only (2-column card grid and shelves): larger product image, smaller text.
    The image area grows by about what the text gives back, so the card keeps its size. Desktop and tablet are untouched. */
