@@ -31,10 +31,32 @@
   --icon-l:74%; --tile-mix:22%; --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.3);
   color-scheme:dark;
 }
-*{box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box}
+html{
+  overflow-x:hidden;
+  overflow-x:clip;
+  max-width:100%;
+  width:100%;
+  overscroll-behavior-x:none;
+  -webkit-text-size-adjust:100%;
+}
 [hidden]{display:none!important}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45;padding-inline:0;overflow-x:hidden}
-img{max-width:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:15px;
+  line-height:1.45;
+  padding-inline:0;
+  overflow-x:hidden;
+  overflow-x:clip;
+  max-width:100%;
+  width:100%;
+  position:relative;
+  touch-action:pan-y pinch-zoom;
+}
+img,svg,video,canvas,audio,iframe,embed,object{max-width:100%}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;cursor:pointer}
 h1,h2,h3,h4{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.01em}
@@ -44,6 +66,19 @@ ul{list-style:none;margin:0;padding:0}
 .wrap{width:100%;max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
 .svg-defs{position:absolute;width:0;height:0;overflow:hidden}
 .ico{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Contain horizontal scrolling and prevent page shake when swiping shelves / slider */
+.track,
+.shelf,
+nav.main .wrap,
+.chips,
+.thumbs,
+.tw,
+.fm-tw{
+  touch-action:pan-x pan-y pinch-zoom;
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+}
 
 /* 1 announcement */
 .announce{background:var(--ink);color:var(--bg);font-size:13px}
@@ -55,15 +90,15 @@ ul{list-style:none;margin:0;padding:0}
 
 /* header */
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--surface);border-bottom:1px solid var(--line)}
-.head{display:grid;grid-template-columns:1fr auto;grid-template-areas:"logo actions" "search search";gap:10px 12px;align-items:center;padding-block:10px}
-.logo{grid-area:logo;display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:800;font-size:24px;letter-spacing:-.03em;color:var(--brand)}
-.logo i{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--brand);color:var(--brand-ink);font-style:normal;font-size:19px}
+.head{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"logo actions" "search search";gap:10px 12px;align-items:center;padding-block:10px}
+.logo{grid-area:logo;display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:800;font-size:24px;letter-spacing:-.03em;color:var(--brand);min-width:0}
+.logo i{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--brand);color:var(--brand-ink);font-style:normal;font-size:19px;flex:none}
 .search{grid-area:search;display:flex;min-width:0;border:2px solid var(--brand);border-radius:10px;overflow:hidden;background:var(--bg)}
 .search input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;padding:10px 12px;outline:none}
 .search input::placeholder{color:var(--muted)}
-.search button{border:0;background:var(--brand);color:var(--brand-ink);padding:0 16px;font-weight:700;display:flex;align-items:center;gap:6px}
+.search button{border:0;background:var(--brand);color:var(--brand-ink);padding:0 16px;font-weight:700;display:flex;align-items:center;gap:6px;flex:none}
 .search button svg{width:18px;height:18px}
-.actions{grid-area:actions;display:flex;align-items:center;gap:6px}
+.actions{grid-area:actions;display:flex;align-items:center;gap:6px;min-width:0}
 .btn{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:8px 12px;font-weight:600;font-size:14px;white-space:nowrap}
 .btn.solid{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
 .btn:hover{border-color:var(--brand)}
@@ -238,7 +273,8 @@ section.blk{padding-block:18px}
 .rk .t{width:58px;height:58px;border-radius:10px;display:grid;place-items:center;flex:none;background:color-mix(in srgb,hsl(var(--h) 75% 55%) var(--tile-mix),var(--surface))}
 .rk .t .ico{width:56%;height:56%;color:hsl(var(--h) 50% var(--icon-l))}
 .rk .i{min-width:0;display:flex;flex-direction:column;gap:2px;flex:1}
-.rk .i b{font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rk .i b{display:block;min-width:0;max-width:100%;font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rk .i b a{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rk .i span{font-size:12px;color:var(--muted)}
 .rk .i strong{color:var(--brand);font-variant-numeric:tabular-nums}
 .rk .add{margin:0;padding:6px 10px;flex:none}
@@ -256,9 +292,9 @@ section.blk{padding-block:18px}
 .offer{display:flex;flex-direction:column;gap:10px;border:2px dashed var(--brand);border-radius:var(--r);padding:14px;background:var(--soft);min-width:0}
 .offer h3{font-size:22px;font-weight:800;color:var(--brand)}
 .offer p{font-size:13px;color:var(--muted)}
-.code{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;background:var(--surface);border-radius:8px;padding:6px 6px 6px 12px}
-.code code{font-weight:800;letter-spacing:.06em;font-size:14px;overflow:hidden;text-overflow:ellipsis}
-.code button{border:0;background:var(--brand);color:var(--brand-ink);border-radius:6px;padding:6px 12px;font-weight:700;font-size:13px}
+.code{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;background:var(--surface);border-radius:8px;padding:6px 6px 6px 12px;min-width:0}
+.code code{font-weight:800;letter-spacing:.06em;font-size:14px;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1 1 auto;white-space:nowrap}
+.code button{border:0;background:var(--brand);color:var(--brand-ink);border-radius:6px;padding:6px 12px;font-weight:700;font-size:13px;flex:none}
 
 /* global */
 .glob{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -284,10 +320,16 @@ section.blk{padding-block:18px}
 .aff h2{font-size:clamp(24px,4.4vw,34px);font-weight:800;line-height:1.1}
 .aff p{opacity:.9;margin-top:8px;max-width:48ch}
 .aff ul{display:grid;gap:8px;grid-template-columns:repeat(3,minmax(0,1fr))}
-.aff li{background:rgba(255,255,255,.14);border-radius:10px;padding:10px;text-align:center;font-size:12px}
-.aff li b{display:block;font-family:var(--f-display);font-size:22px}
+.aff li{background:rgba(255,255,255,.14);border-radius:10px;padding:10px;text-align:center;font-size:12px;min-width:0;overflow:hidden}
+.aff li b{display:block;font-family:var(--f-display);font-size:22px;overflow-wrap:anywhere}
 .aff .btn{background:#fff;color:#0A4F45;border-color:#fff;margin-top:14px;font-weight:700;padding:11px 18px}
 @media(min-width:860px){.aff{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);padding:30px}}
+@media(max-width:559px){
+  .aff{padding:18px 14px}
+  .aff ul{gap:6px}
+  .aff li{padding:8px 4px}
+  .aff li b{font-size:clamp(14px, 4.2vw, 19px)}
+}
 
 /* payment & social */
 .pay{display:flex;flex-wrap:wrap;gap:10px}
@@ -985,10 +1027,11 @@ a.chip{display:inline-flex;align-items:center}
   .actions .cart{padding:8px}
   .logo{font-size:21px;gap:6px}
   .logo i{width:28px;height:28px;font-size:17px}
+  .head.nf-dock .locbtn{margin-right:48px;max-width:calc(100% - 48px)}
 }
-@media(max-width:419px){.actions{gap:3px}.actions .btn{padding:8px 7px}.actions .cart{padding:8px 7px}.logo{font-size:20px;gap:5px}.logo i{width:26px;height:26px;font-size:16px}}
-@media(max-width:379px){.actions .btn{padding:8px 5px;font-size:12.5px}.actions .cart{padding:8px 5px}.logo{font-size:19px}}
-@media(max-width:339px){.actions .btn{font-size:12px}.logo{font-size:17px}.logo i{display:none}}
+@media(max-width:419px){.actions{gap:3px}.actions .btn{padding:8px 7px;font-size:12.5px}.actions .cart{padding:8px 7px}.logo{font-size:20px;gap:5px}.logo i{width:26px;height:26px;font-size:16px}}
+@media(max-width:379px){.actions{gap:2px}.actions .btn{padding:7px 5px;font-size:12px}.actions .cart{padding:7px 5px}.logo{font-size:18px;gap:4px}.logo i{width:24px;height:24px;font-size:15px}}
+@media(max-width:339px){.actions{gap:2px}.actions .btn{padding:6px 4px;font-size:11.5px}.actions .cart{padding:6px 4px}.logo{font-size:16px}.logo i{display:none}}
 @media(max-width:599px){.modal input{font-size:16px}}
 .modal .btn.solid:disabled{opacity:.65;cursor:progress}
 
@@ -1110,12 +1153,12 @@ a.chip{display:inline-flex;align-items:center}
 .nf-mark{display:grid;place-items:center;width:34px;height:34px;margin-right:12px;padding:7px;border:1.5px solid var(--line);border-radius:50%;background:var(--surface);color:var(--brand)}
 .nf-mark:hover{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
 /* phones: the header row is already full, so the bell docks in the location row (moved by script) */
-@media(max-width:559px){.head>.nf-wrap{grid-area:loc;justify-self:end;align-self:center}.head.nf-dock .locbtn{margin-right:48px}}
+@media(max-width:559px){.head>.nf-wrap{grid-area:loc;justify-self:end;align-self:center}.head.nf-dock .locbtn{margin-right:48px;max-width:calc(100% - 48px)}}
 @keyframes nfIn{from{opacity:0;transform:translateY(-6px) scale(.97)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.nf-panel{animation:none}}
 
 /* ===== Floating product promo popup (dummy data) ===== */
-.fp{position:fixed;right:20px;bottom:calc(20px + var(--fp-lift,0px) + env(safe-area-inset-bottom,0px));z-index:50;width:min(340px,calc(100vw - 24px));background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 14px 40px rgba(16,35,31,.18),0 2px 6px rgba(16,35,31,.08);opacity:0;transform:translateX(calc(100% + 40px));transition:opacity .6s ease-in-out,transform .6s ease-in-out;will-change:opacity,transform}
+.fp{position:fixed;right:20px;bottom:calc(20px + var(--fp-lift,0px) + env(safe-area-inset-bottom,0px));z-index:50;width:min(340px,calc(100% - 24px));max-width:calc(100% - 24px);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 14px 40px rgba(16,35,31,.18),0 2px 6px rgba(16,35,31,.08);opacity:0;transform:translateX(calc(100% + 40px));transition:opacity .6s ease-in-out,transform .6s ease-in-out;will-change:opacity,transform}
 .fp.show{opacity:1;transform:translateX(0)}
 .fp-card{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:center;padding:14px 38px 14px 14px}
 .fp-thumb{display:grid;place-items:center;width:64px;height:64px;border-radius:14px;background:color-mix(in srgb,hsl(var(--h) 75% 55%) var(--tile-mix),var(--surface))}
@@ -1134,19 +1177,24 @@ a.chip{display:inline-flex;align-items:center}
 .fp-cta:hover{filter:brightness(1.08)}
 .fp-x{position:absolute;top:6px;right:6px;display:grid;place-items:center;width:30px;height:30px;border:0;border-radius:50%;background:none;color:var(--muted);font-size:20px;line-height:1}
 .fp-x:hover{background:var(--soft);color:var(--ink)}
-@media(max-width:559px){.fp{right:12px;bottom:calc(12px + var(--fp-lift,0px) + env(safe-area-inset-bottom,0px));width:min(320px,calc(100vw - 24px))}.fp-card{grid-template-columns:52px minmax(0,1fr);gap:12px;padding:10px 34px 10px 10px}.fp-thumb{width:52px;height:52px;border-radius:12px}.fp-name{font-size:15px}.fp-sub{display:none}}
+@media(max-width:959px){.fp{right:12px;bottom:calc(12px + var(--fp-lift,0px) + env(safe-area-inset-bottom,0px));width:min(320px,calc(100% - 24px));max-width:calc(100% - 24px)}}
+@media(max-width:559px){.fp-card{grid-template-columns:52px minmax(0,1fr);gap:12px;padding:10px 34px 10px 10px}.fp-thumb{width:52px;height:52px;border-radius:12px}.fp-name{font-size:15px}.fp-sub{display:none}}
 @media(prefers-reduced-motion:reduce){.fp{transition:opacity .01s linear;transform:none}}
 /* Mobile overflow fix: the popup rests off-screen to the right (translateX(100% + 40px)) while it is fading in/out and for the
    whole 15s pause between cycles. A fixed element parked beyond the right edge widens the layout/visual viewport on phones, which is
    what let the page pan and shake sideways (body overflow-x:hidden does not clip fixed elements). On phones it now rests below the
    screen instead and is visibility:hidden whenever it is not showing, so nothing sits outside the viewport. Desktop is unchanged. */
-@media(max-width:759px){
+@media(max-width:959px){
   .fp{transform:translateY(calc(100% + 40px))}
   .fp.show{transform:translateY(0)}
   .fp:not(.show){visibility:hidden;pointer-events:none;transition:opacity .6s ease-in-out,transform .6s ease-in-out,visibility 0s linear .6s}
 }
-@media(max-width:759px) and (prefers-reduced-motion:reduce){.fp,.fp.show{transform:none}.fp:not(.show){transition:opacity .01s linear}}
-html{overscroll-behavior-x:none}
+@media(max-width:959px) and (prefers-reduced-motion:reduce){.fp,.fp.show{transform:none}.fp:not(.show){transition:opacity .01s linear}}
+
+@media(max-width:359px){
+  .ci{grid-template-columns:72px minmax(0,1fr);gap:6px 10px;padding:12px}
+  .ci-img{border-radius:10px}
+}
 
 /* Mobile only (2-column card grid and shelves): larger product image, smaller text.
    The image area grows by about what the text gives back, so the card keeps its size. Desktop and tablet are untouched. */
